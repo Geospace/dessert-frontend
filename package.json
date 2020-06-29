@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/webpack": "^4.41.18",
     "next": "9.4.4",
     "normalize.css": "^8.0.1",
     "react": "16.13.1",
