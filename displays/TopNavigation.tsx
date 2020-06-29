@@ -1,3 +1,5 @@
+import { Hidden } from 'react-grid-system';
+
 import SiteLogo from '../components/SiteLogo';
 import NavbarLink from '../components/NavbarLink';
 
@@ -20,7 +22,9 @@ const TopNavigation = (): JSX.Element => (
   <div className={style.navigation}>
     <SiteLogo size={1.5} />
 
-    <ul>{links}</ul>
+    <Hidden xs sm>
+      <ul>{links}</ul>
+    </Hidden>
   </div>
 );
 
