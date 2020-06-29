@@ -1,0 +1,22 @@
+parserOptions:
+  ecmaVersion: 6
+  project: tsconfig.json
+
+env:
+  browser: true
+
+extends:
+  - airbnb-typescript
+  - airbnb/hooks
+  - plugin:@typescript-eslint/recommended
+  - prettier
+
+plugins:
+  - prettier
+
+rules:
+  react/react-in-jsx-scope: off
+  react/jsx-one-expression-per-line: off
+  jsx-a11y/label-has-associated-control: off
+  jsx-a11y/anchor-is-valid: off
+  prettier/prettier: error

@@ -1,0 +1,14 @@
+.footer {
+  box-shadow: var(--color-separator) 0px -1px 0px;
+  font-size: 0.9em;
+  margin-top: 1em;
+}
+
+.logo {
+  font-family: var(--font-logo);
+}
+
+.footer p {
+  padding: 1em 0;
+  margin: 0;
+}

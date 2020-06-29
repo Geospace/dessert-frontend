@@ -1,0 +1,11 @@
+.link {
+  display: inline;
+}
+
+.link a {
+  color: var(--color-faded);
+}
+
+.link a:hover {
+  color: var(--color-logo);
+}
