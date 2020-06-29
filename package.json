@@ -12,6 +12,7 @@
     "normalize.css": "^8.0.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-grid-system": "^7.0.3",
     "react-icons": "^3.10.0"
   },
   "devDependencies": {

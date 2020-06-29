@@ -1,0 +1,8 @@
+.wrapper {
+  text-align: center;
+}
+
+.text {
+  color: var(--color-faded);
+  font-size: 1.3em;
+}
