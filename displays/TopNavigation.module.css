@@ -2,6 +2,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 3.5em;
+  height: 3.5em;
   box-shadow: var(--color-separator) 0px 1px 0px;
+}
+
+.links {
+  padding: 0;
+  max-width: 10em;
+  overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.links::-webkit-scrollbar {
+  display: none;
 }

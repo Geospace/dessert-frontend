@@ -1,10 +1,9 @@
-import { Hidden } from 'react-grid-system';
+import { useRouter } from 'next/dist/client/router';
 
 import SiteLogo from '../components/SiteLogo';
 import NavbarLink from '../components/NavbarLink';
 
 import style from './TopNavigation.module.css';
-import { useRouter } from 'next/dist/client/router';
 
 const elements = [
   { to: '/modules', text: 'Modules' },
@@ -16,8 +15,8 @@ const elements = [
 const TopNavigation = (): JSX.Element => {
   const router = useRouter();
 
-  const links = elements.map((e) => (
-    <span style={{ marginLeft: '1.5em' }} key={e.text}>
+  const links = elements.map((e, k) => (
+    <span style={{ marginLeft: k ? '1.5em' : 'none' }} key={e.text}>
       <NavbarLink active={router.pathname === e.to} to={e.to}>
         {e.text}
       </NavbarLink>
@@ -28,9 +27,7 @@ const TopNavigation = (): JSX.Element => {
     <div className={style.navigation}>
       <SiteLogo size={1.5} />
 
-      <Hidden xs sm>
-        <ul>{links}</ul>
-      </Hidden>
+      <ul className={style.links}>{links}</ul>
     </div>
   );
 };
