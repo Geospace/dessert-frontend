@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import TopNavigation from './TopNavigation';
 import Footer from './Footer';
 
@@ -9,6 +11,9 @@ interface Props {
 
 const RegularLayout = ({ children }: Props): JSX.Element => (
   <div className={style.layout}>
+    <Head>
+      <link rel="shortcut icon" href="favicon.png" />
+    </Head>
     <TopNavigation />
     {children}
     <Footer />
