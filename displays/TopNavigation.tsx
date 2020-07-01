@@ -1,5 +1,6 @@
 import { useRouter } from 'next/dist/client/router';
 import { Hidden, Visible } from 'react-grid-system';
+import Link from 'next/link';
 
 import SiteLogo from '../components/SiteLogo';
 import NavbarLink from '../components/NavbarLink';
@@ -16,7 +17,10 @@ const elements = [
 
 const LoginSignup = (): JSX.Element => (
   <div className={styles.right}>
-    <a href="/log">Log In</a>
+    <Link href="/log">
+      <a>Log In</a>
+    </Link>
+
     <span className={styles.sign}>
       <PrimaryButton to="sign">Sign Up</PrimaryButton>
     </span>
