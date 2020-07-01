@@ -7,17 +7,22 @@ import style from './RegularLayout.module.css';
 
 interface Props {
   children: React.ReactNode;
+  footer?: boolean;
 }
 
-const RegularLayout = ({ children }: Props): JSX.Element => (
+const RegularLayout = ({ children, footer }: Props): JSX.Element => (
   <div className={style.layout}>
     <Head>
       <link rel="shortcut icon" href="favicon.png" />
     </Head>
     <TopNavigation />
     {children}
-    <Footer />
+    {footer && <Footer />}
   </div>
 );
+
+RegularLayout.defaultProps = {
+  footer: true,
+};
 
 export default RegularLayout;

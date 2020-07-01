@@ -1,5 +1,7 @@
 .button {
   background-color: var(--color-primary);
-  color: white !important;
+  color: var(--color-text-primary) !important;
   padding: 0.5em 0.8em;
+  border-radius: var(--radius-button);
+  border: var(--border-button);
 }

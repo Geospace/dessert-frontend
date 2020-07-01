@@ -1,0 +1,19 @@
+.button {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary) !important;
+  padding: 0.5em 0;
+  border-radius: var(--radius-button);
+  border: var(--border-button);
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 0.8em;
+  cursor: pointer;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

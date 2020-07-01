@@ -61,7 +61,7 @@ const Index = (): JSX.Element => (
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: '4em' }}>
-        <BigOutlineButton to="/log">Get Started →</BigOutlineButton>
+        <BigOutlineButton to="/sign">Get Started →</BigOutlineButton>
       </div>
     </RegularLayout>
   </>
