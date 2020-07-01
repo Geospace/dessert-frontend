@@ -9,6 +9,7 @@
   --color-highlight: rgba(0, 0, 0, 0.05);
   --color-faded: #aaa;
   --color-separator: rgba(0, 0, 0, 0.07);
+  --color-text-primary: white;
 
   --font-logo: 'Pacifico', cursive;
   --font-content: 'Roboto Condensed', serif;
@@ -16,6 +17,11 @@
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   --size-content: 1.1em;
+
+  --radius-button: 3px;
+  --radius-box: 5px;
+
+  --border-button: 1px solid var(--color-faded);
 }
 
 .theme {
