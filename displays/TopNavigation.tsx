@@ -1,9 +1,11 @@
 import { useRouter } from 'next/dist/client/router';
+import { Hidden, Visible } from 'react-grid-system';
 
 import SiteLogo from '../components/SiteLogo';
 import NavbarLink from '../components/NavbarLink';
+import PrimaryButton from '../components/PrimaryButton';
 
-import style from './TopNavigation.module.css';
+import styles from './TopNavigation.module.css';
 
 const elements = [
   { to: '/modules', text: 'Modules' },
@@ -11,6 +13,15 @@ const elements = [
   { to: '/blog', text: 'Blog' },
   { to: '/about', text: 'About' },
 ];
+
+const LoginSignup = (): JSX.Element => (
+  <div className={styles.right}>
+    <a href="/log">Log In</a>
+    <span className={styles.sign}>
+      <PrimaryButton to="sign">Sign Up</PrimaryButton>
+    </span>
+  </div>
+);
 
 const TopNavigation = (): JSX.Element => {
   const router = useRouter();
@@ -24,11 +35,28 @@ const TopNavigation = (): JSX.Element => {
   ));
 
   return (
-    <div className={style.navigation}>
-      <SiteLogo size={1.5} />
+    <>
+      <div className={styles.navigation}>
+        <SiteLogo size={1.5} />
 
-      <ul className={style.links}>{links}</ul>
-    </div>
+        <Hidden xs>
+          <div className={styles.group}>
+            <ul className={styles.links}>{links}</ul>
+            <LoginSignup />
+          </div>
+        </Hidden>
+
+        <Visible xs>
+          <LoginSignup />
+        </Visible>
+      </div>
+
+      <Visible xs>
+        <div className={styles.navigationMobile}>
+          <ul className={styles.links}>{links}</ul>
+        </div>
+      </Visible>
+    </>
   );
 };
 
