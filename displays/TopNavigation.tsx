@@ -1,6 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import { Hidden, Visible } from 'react-grid-system';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 import SiteLogo from '../components/SiteLogo';
 import NavbarLink from '../components/NavbarLink';
@@ -14,6 +15,22 @@ const elements = [
   { to: '/blog', text: 'Blog' },
   { to: '/about', text: 'About' },
 ];
+
+const ProfilePic = (): JSX.Element => (
+  <Link href="/log">
+    <a>
+      <div
+        style={{
+          background: '#aaa',
+          marginLeft: '2em',
+          borderRadius: '100%',
+          height: '2.2em',
+          width: '2.2em',
+        }}
+      />
+    </a>
+  </Link>
+);
 
 const LoginSignup = (): JSX.Element => (
   <div className={styles.right}>
@@ -29,6 +46,7 @@ const LoginSignup = (): JSX.Element => (
 
 const TopNavigation = (): JSX.Element => {
   const router = useRouter();
+  const [isConnected, setConnected] = useState(false);
 
   const links = elements.map((e, k) => (
     <span style={{ marginLeft: k ? '1.5em' : 'none' }} key={e.text}>
@@ -38,6 +56,10 @@ const TopNavigation = (): JSX.Element => {
     </span>
   ));
 
+  useEffect(() => {
+    setConnected(localStorage.getItem('connected') === 'yes');
+  }, []);
+
   return (
     <>
       <div className={styles.navigation}>
@@ -46,13 +68,11 @@ const TopNavigation = (): JSX.Element => {
         <Hidden xs>
           <div className={styles.group}>
             <ul className={styles.links}>{links}</ul>
-            <LoginSignup />
+            {isConnected ? <ProfilePic /> : <LoginSignup />}
           </div>
         </Hidden>
 
-        <Visible xs>
-          <LoginSignup />
-        </Visible>
+        <Visible xs>{isConnected ? <ProfilePic /> : <LoginSignup />}</Visible>
       </div>
 
       <Visible xs>
