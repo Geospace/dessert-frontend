@@ -1,6 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import { Hidden, Visible } from 'react-grid-system';
 import Link from 'next/link';
+
 import { useState, useEffect } from 'react';
 
 import SiteLogo from '../components/SiteLogo';
