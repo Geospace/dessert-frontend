@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 import Input from '../components/Input';
 
 import styles from './LogIn.module.css';
@@ -11,6 +13,11 @@ const Label = ({ children }: { children: string }): JSX.Element => (
 const SignIn = (): JSX.Element => {
   const [email, updateEmail] = useState('');
   const [password, updatePassword] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   return (
     <div className={styles.box}>
@@ -31,7 +38,14 @@ const SignIn = (): JSX.Element => {
         />
       </div>
 
-      <LargeButton>Log In</LargeButton>
+      <LargeButton
+        onClick={(): void => {
+          localStorage.setItem('connected', 'yes');
+          router.push('/');
+        }}
+      >
+        Log In
+      </LargeButton>
     </div>
   );
 };
