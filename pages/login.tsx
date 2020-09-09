@@ -30,7 +30,6 @@ const LogIn = (): JSX.Element => {
         </div>
         <LogInForm />
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "4%" }}>
-                                          <h1>Sign with GitHub</h1>
                                           <form action="https://prod.dessert.vodka/signin" method="post">
                                           <input type="hidden" name="Provider" value="GitHub" />
 
