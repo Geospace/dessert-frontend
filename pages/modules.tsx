@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client"
 import { useRouter } from "next/dist/client/router"
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 import Input from "../components/Input"
 import RegularLayout from "../displays/RegularLayout"

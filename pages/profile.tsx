@@ -2,14 +2,12 @@ import { gql, useMutation, useQuery } from "@apollo/client"
 import { useRouter } from "next/dist/client/router"
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 
 import PrimaryButton from "../components/PrimaryButton"
 import Loading from "../displays/Loading"
 import RegularLayout from "../displays/RegularLayout"
 import { User } from "../types/User"
-import { flushUser, getUser } from "../utils/user"
 
 const ME_QUERY = gql`
   query {
@@ -47,28 +45,17 @@ const REVOKE_MUTATION = gql`
 `
 
 const Index = (): JSX.Element => {
-  const [user, updateUser] = useState<User | null>(null)
-  const [logout] = useMutation(LOGOUT_MUTATION)
+  const [logout, { client }] = useMutation(LOGOUT_MUTATION)
   const [revoke] = useMutation(REVOKE_MUTATION)
-  const { loading, data } = useQuery<{ me: User }>(ME_QUERY)
+  const { loading, error, data } = useQuery<{ me: User }>(ME_QUERY)
   const router = useRouter()
 
-  useEffect(() => {
-    const u = getUser()
-    if (u === undefined) {
-      router.push("/login")
-      return
-    }
-
-    updateUser(u)
-  }, [router])
-
-  if (user === null || loading) {
+  if (loading) {
     return <Loading />
   }
 
-  if (!data || !data.me) {
-    return <p>Somthing bad happened...</p>
+  if (!data || !data.me || error) {
+    return <p>Something bad happened...</p>
   }
 
   return (
@@ -78,7 +65,7 @@ const Index = (): JSX.Element => {
       </Head>
 
       <RegularLayout maxWidth="42em">
-        <h2>Hello, {user.nickname}</h2>
+        <h2>Hello, {data.me.nickname}</h2>
 
         <p>
           This is your profile. Only you can see this. Here you can view your
@@ -148,10 +135,10 @@ const Index = (): JSX.Element => {
 
         <PrimaryButton
           onClick={() => {
-            flushUser()
             logout()
               .then(() => {
                 toast.success("You have been logged out")
+                client?.resetStore().then()
                 router.push("/")
               })
               .catch(() => {
