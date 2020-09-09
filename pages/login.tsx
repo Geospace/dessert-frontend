@@ -6,7 +6,7 @@ import ThinTitle from "../components/ThinTitle"
 import LogInForm from "../displays/LoginForm"
 import RegularLayout from "../displays/RegularLayout"
 import { getUser } from "../utils/user"
-import LargeButton from "../components/LargeButton"
+import LargeButton from "../../components/LargeButton"
 
 const LogIn = (): JSX.Element => {
   const router = useRouter()
