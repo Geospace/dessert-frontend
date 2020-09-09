@@ -1,12 +1,13 @@
+import { gql, useQuery } from "@apollo/client"
 import { useRouter } from "next/dist/client/router"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 import { Hidden, Visible } from "react-grid-system"
 
 import NavbarLink from "../components/NavbarLink"
 import PrimaryButton from "../components/PrimaryButton"
 import SiteLogo from "../components/SiteLogo"
-import { getUser } from "../utils/user"
+import { User } from "../types/User"
+import Loading from "./Loading"
 import styles from "./TopNavigation.module.css"
 
 const elements = [
@@ -16,12 +17,34 @@ const elements = [
   { to: "/about", text: "About" },
 ]
 
-const ProfilePic = (): JSX.Element => {
-  const user = getUser()
-  const profilePicture = user
-    ? user.profilePicUrl
-    : "https://api.adorable.io/avatars/285/"
+const ME_QUERY = gql`
+  query {
+    me {
+      nickname
+      tokens {
+        id
+        token
+        description
+      }
+      modules(pagination: { includeCount: true, pageSize: 5, pageNumber: 1 }) {
+        result {
+          id
+          name
+          author {
+            nickname
+          }
+          description
+        }
+      }
+    }
+  }
+`
 
+const ProfilePic = ({
+  profilePicture,
+}: {
+  profilePicture: string
+}): JSX.Element => {
   return (
     <Link href="/profile">
       <a>
@@ -56,7 +79,7 @@ const LoginSignup = (): JSX.Element => (
 
 const TopNavigation = (): JSX.Element => {
   const router = useRouter()
-  const [isConnected, setConnected] = useState(false)
+  const { loading, data } = useQuery<{ me: User }>(ME_QUERY)
 
   const links = elements.map((e, k) => (
     <span style={{ marginLeft: k ? "1.5em" : "none" }} key={e.text}>
@@ -66,9 +89,9 @@ const TopNavigation = (): JSX.Element => {
     </span>
   ))
 
-  useEffect(() => {
-    setConnected(getUser() !== undefined)
-  }, [])
+  if (loading) {
+    return <Loading />
+  }
 
   return (
     <>
@@ -78,11 +101,21 @@ const TopNavigation = (): JSX.Element => {
         <Hidden xs>
           <div className={styles.group}>
             <ul className={styles.links}>{links}</ul>
-            {isConnected ? <ProfilePic /> : <LoginSignup />}
+            {data !== undefined ? (
+              <ProfilePic profilePicture={data.me.profilePicUrl} />
+            ) : (
+              <LoginSignup />
+            )}
           </div>
         </Hidden>
 
-        <Visible xs>{isConnected ? <ProfilePic /> : <LoginSignup />}</Visible>
+        <Visible xs>
+          {data !== undefined ? (
+            <ProfilePic profilePicture={data.me.profilePicUrl} />
+          ) : (
+            <LoginSignup />
+          )}
+        </Visible>
       </div>
 
       <Visible xs>

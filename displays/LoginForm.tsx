@@ -6,7 +6,6 @@ import { toast } from "react-toastify"
 
 import Input from "../components/Input"
 import LargeButton from "../components/LargeButton"
-import { setUser } from "../utils/user"
 import styles from "./LoginForm.module.css"
 
 const Label = ({ children }: { children: string }): JSX.Element => (
@@ -56,8 +55,7 @@ const LogInForm = (): JSX.Element => {
           onClick={(e): void => {
             e.preventDefault()
             login({ variables: { email, password } })
-              .then(({ data }) => {
-                setUser(data.login)
+              .then(() => {
                 router.push("/")
               })
               .catch(() => {
