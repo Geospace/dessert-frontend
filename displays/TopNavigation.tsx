@@ -11,9 +11,9 @@ import styles from "./TopNavigation.module.css"
 
 const elements = [
   { to: "/modules", text: "Modules" },
-  { to: "/learn", text: "Learn" },
+  { to: "https://www.notion.so/Documentation-f6c3ecd3e12d4e4b96e4f242c94ab602", text: "Learn" },
   { to: "/blog", text: "Blog" },
-  { to: "/about", text: "About" },
+  { to: "https://www.notion.so/Who-are-we-1d21260779c64e6da6b439c4076c0309", text: "About" },
 ]
 
 const ME_QUERY = gql`
