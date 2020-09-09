@@ -1,28 +1,29 @@
-import Head from 'next/head';
+import Head from "next/head"
 
-import TopNavigation from './TopNavigation';
-import Footer from './Footer';
-
-import style from './RegularLayout.module.css';
+import Footer from "./Footer"
+import style from "./RegularLayout.module.css"
+import TopNavigation from "./TopNavigation"
 
 interface Props {
-  children: React.ReactNode;
-  footer?: boolean;
+  children: React.ReactNode
+  footer?: boolean
+  maxWidth?: string
 }
 
-const RegularLayout = ({ children, footer }: Props): JSX.Element => (
+const RegularLayout = ({ children, footer, maxWidth }: Props): JSX.Element => (
   <div className={style.layout}>
     <Head>
       <link rel="shortcut icon" href="favicon.png" />
     </Head>
     <TopNavigation />
-    {children}
+    <div style={{ maxWidth }}>{children}</div>
     {footer && <Footer />}
   </div>
-);
+)
 
 RegularLayout.defaultProps = {
   footer: true,
-};
+  maxWidth: "auto",
+}
 
-export default RegularLayout;
+export default RegularLayout

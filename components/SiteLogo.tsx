@@ -1,9 +1,9 @@
-import Link from 'next/link';
+import Link from "next/link"
 
-import style from './SiteLogo.module.css';
+import style from "./SiteLogo.module.css"
 
 interface Props {
-  size: number;
+  size: number
 }
 
 const SiteLogo = ({ size }: Props): JSX.Element => (
@@ -12,6 +12,6 @@ const SiteLogo = ({ size }: Props): JSX.Element => (
       <a>Dessert</a>
     </Link>
   </span>
-);
+)
 
-export default SiteLogo;
+export default SiteLogo

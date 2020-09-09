@@ -1,29 +1,30 @@
-import { FormEvent, useState } from 'react';
-import styles from './SearchBar.module.css';
+import { FormEvent, useState } from "react"
+
+import styles from "./SearchBar.module.css"
 
 interface Props {
-  onSearch: (s: string, type?: string) => void;
+  onSearch: (s: string, type?: string) => void
 }
 
 const SearchBar = ({ onSearch }: Props): JSX.Element => {
-  const [moduleType, setModuleType] = useState<string | undefined>(undefined);
-  const [query, setQuery] = useState<string>('');
+  const [moduleType, setModuleType] = useState<string | undefined>(undefined)
+  const [query, setQuery] = useState<string>("")
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-    onSearch(query, moduleType);
-    e.preventDefault();
-  };
+    onSearch(query, moduleType)
+    e.preventDefault()
+  }
 
   const handleInput = (e: FormEvent<HTMLInputElement>): void => {
-    const { value } = e.currentTarget;
-    setQuery(value);
-  };
+    const { value } = e.currentTarget
+    setQuery(value)
+  }
 
   const handleSelect = (e: FormEvent<HTMLSelectElement>): void => {
-    const { value } = e.currentTarget;
-    const newModuleType = value === 'NONE' ? undefined : value;
-    setModuleType(newModuleType);
-  };
+    const { value } = e.currentTarget
+    const newModuleType = value === "NONE" ? undefined : value
+    setModuleType(newModuleType)
+  }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -47,7 +48,7 @@ const SearchBar = ({ onSearch }: Props): JSX.Element => {
         Search
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar

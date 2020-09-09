@@ -1,6 +1,6 @@
-import Head from 'next/head';
+import Head from "next/head"
 
-import RegularLayout from '../displays/RegularLayout';
+import RegularLayout from "../displays/RegularLayout"
 
 const Index = (): JSX.Element => (
   <>
@@ -12,6 +12,6 @@ const Index = (): JSX.Element => (
       <p>This is the learning center...</p>
     </RegularLayout>
   </>
-);
+)
 
-export default Index;
+export default Index

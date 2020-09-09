@@ -1,106 +1,126 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { useState } from 'react';
-import RegularLayout from '../displays/RegularLayout';
-import ModuleList from '../components/ModuleList';
-import { Module } from '../types/Module';
-import SearchBar from '../components/SearchBar';
+import { gql, useQuery } from "@apollo/client"
+import { useRouter } from "next/dist/client/router"
+import Head from "next/head"
+import Link from "next/link"
+import { useEffect, useState } from "react"
 
-interface QueryOptions {
-  query: string;
-  type?: string;
-}
+import Input from "../components/Input"
+import RegularLayout from "../displays/RegularLayout"
+import { Module } from "../types/Module"
 
-const modules: Module[] = [
-  {
-    id: 1,
-    name: 'dessert-yaml-js',
-    description: 'yaml-js but with WebAssembly',
-    author: 'Nyquase',
-    core: false,
-  },
-  {
-    id: 2,
-    name: 'dessert-showdown',
-    description: 'Showdown but with WebAssembly',
-    author: 'Reno',
-    core: false,
-  },
-  {
-    id: 3,
-    name: 'dessert-jsonschema-core',
-    description: 'WebAssembly Core for Dessert JsonSchema',
-    author: 'Reno',
-    core: true,
-  },
-  {
-    id: 4,
-    name: 'dessert-filesize',
-    description: 'Clone of filesize implemented in Rust for WebAssembly',
-    author: 'Nyquase',
-    core: false,
-  },
-  {
-    id: 5,
-    name: 'dessert-filesize-core',
-    description: 'Core for filesize',
-    author: 'Nyquase',
-    core: true,
-  },
-];
-
-const ResultPlaceholder = (): JSX.Element => (
-  <div style={{ height: '100%', overflow: 'auto' }}>
-    <p>
-      <span role="img" aria-label="thinking">
-        🤔
-      </span>{' '}
-      Feeling a bit lost?&nbsp;
-      <Link href="#">
-        <a>Check our quickstart guide.</a>
-      </Link>
-    </p>
-  </div>
-);
-
-const search = (
-  m: Module[],
-  query: string,
-  moduleType: string | undefined
-): Module[] => {
-  return m.filter((mod) => mod.name.includes(query));
-};
-
-const Index = (): JSX.Element => {
-  const [result, setResult] = useState(modules);
-
-  let moduleDisplay: JSX.Element;
-  if (result.length) {
-    moduleDisplay = <ModuleList modules={result} />;
-  } else {
-    moduleDisplay = <p>No module found</p>;
+const SEARCH_QUERY = gql`
+  query search($query: String!) {
+    search(
+      query: $query
+      pagination: { includeCount: false, pageSize: 100, pageNumber: 1 }
+    ) {
+      result {
+        id
+        name
+        description
+        isCore
+        author {
+          nickname
+        }
+        tags {
+          name
+        }
+      }
+    }
   }
+`
+
+const Modules = (): JSX.Element => {
+  const router = useRouter()
+  const q = router.query.q?.toString() || ""
+  const { loading, error, data } = useQuery<{ search: { result: Module[] } }>(
+    SEARCH_QUERY,
+    {
+      variables: { query: q },
+    }
+  )
+
+  useEffect(() => {}, [data])
 
   return (
     <>
       <Head>
-        <title>Modules</title>
+        <title>Search Modules</title>
       </Head>
 
-      <RegularLayout>
-        <SearchBar
-          onSearch={(s, t?): void => {
-            const results = search(modules, s, t);
-            console.log(results);
-            setResult(results);
-            // setQuery({ query: s, type: t });
+      <RegularLayout maxWidth="42em">
+        <h2>Search Modules</h2>
+        <Input
+          placeholder="Search anything"
+          onChange={(e) => {
+            if (e.currentTarget.value.length > 0) {
+              router.push(`/modules?q=${e.currentTarget.value}`, undefined, {
+                shallow: true,
+              })
+            } else {
+              router.push("/modules", undefined, {
+                shallow: true,
+              })
+            }
           }}
+          value={q}
         />
-        <p>{result.length} matching modules</p>
-        {moduleDisplay}
+
+        {q === "" && (
+          <p>Please search for something in order to get results...</p>
+        )}
+
+        {q !== "" && loading && <p>Loading...</p>}
+
+        {q !== "" &&
+          !loading &&
+          !error &&
+          data &&
+          data.search.result.length === 0 && (
+            <p>There are no modules matching your request...</p>
+          )}
+
+        {q !== "" &&
+          !loading &&
+          !error &&
+          data &&
+          data.search.result.length > 0 && (
+            <div>
+              {data.search.result.map((module, i) => (
+                <div
+                  key={module.id}
+                  style={{
+                    margin: "1em 0",
+                    borderBottom:
+                      i === data.search.result.length - 1
+                        ? "none"
+                        : "1px solid rgba(100, 100, 100, 0.08)",
+                  }}
+                >
+                  <h3 style={{ margin: "0.3em 0" }}>
+                    <Link href={`/module/${module.id}`}>
+                      <a>{module.name}</a>
+                    </Link>
+                  </h3>
+                  <p style={{ margin: "0.4em 0" }}>{module.description}</p>
+                  <p
+                    style={{
+                      margin: "0.4em 0",
+                      color: "#ccc",
+                    }}
+                  >
+                    By {module.author.nickname}{" "}
+                    {module.tags.length > 0
+                      ? `| Tags: ${module.tags.map((t) => t.name).join(", ")}`
+                      : "| No tags"}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
       </RegularLayout>
     </>
-  );
-};
+  )
+}
 
-export default Index;
+export default Modules

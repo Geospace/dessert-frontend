@@ -8,7 +8,7 @@
 
 .navigationMobile {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   height: 3em;
   box-shadow: var(--color-separator) 0px 1px 0px;

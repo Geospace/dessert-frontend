@@ -1,20 +1,21 @@
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { useState } from 'react';
-import { Module } from '../types/Module';
-import styles from './ModuleList.module.css';
+import { useState } from "react"
+import InfiniteScroll from "react-infinite-scroll-component"
+
+import { Module } from "../types/Module"
+import styles from "./ModuleList.module.css"
 
 interface Props {
-  modules: Module[];
+  modules: Module[]
 }
 
 const ModuleList = ({ modules }: Props): JSX.Element => {
-  const [moduleArray, setModules] = useState(modules);
+  const [moduleArray, setModules] = useState(modules)
   const fetchMoreData = (): void => {
     setTimeout(() => {
-      const m = moduleArray.concat(modules);
-      setModules(m);
-    }, 1500);
-  };
+      const m = moduleArray.concat(modules)
+      setModules(m)
+    }, 1500)
+  }
   return (
     <InfiniteScroll
       dataLength={modules.length}
@@ -34,7 +35,7 @@ const ModuleList = ({ modules }: Props): JSX.Element => {
         )
       )}
     </InfiniteScroll>
-  );
-};
+  )
+}
 
-export default ModuleList;
+export default ModuleList
