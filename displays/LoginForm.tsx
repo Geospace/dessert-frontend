@@ -76,6 +76,39 @@ const LogInForm = (): JSX.Element => {
           <a>Click here to sign up!</a>
         </Link>
       </p>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "4%",
+        }}
+      >
+        <form action="https://prod.dessert.vodka/signin" method="post">
+          <input type="hidden" name="Provider" value="GitHub" />
+          <button
+            type="submit"
+            style={{
+              color: "white",
+              background: "black",
+              padding: "0.5em 0.7em",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src="/github.ico"
+              alt="Chat Poulpe"
+              style={{ height: "22px", marginRight: "10px" }}
+            />
+            <span>Connect using GitHub</span>
+          </button>
+        </form>
+      </div>
     </>
   )
 }
