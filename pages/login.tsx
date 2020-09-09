@@ -1,4 +1,3 @@
-import { useRouter } from "next/dist/client/router"
 import Head from "next/head"
 
 import ThinTitle from "../components/ThinTitle"
@@ -6,8 +5,6 @@ import LogInForm from "../displays/LoginForm"
 import RegularLayout from "../displays/RegularLayout"
 
 const LogIn = (): JSX.Element => {
-  const router = useRouter()
-
   return (
     <>
       <Head>

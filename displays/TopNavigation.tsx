@@ -7,7 +7,6 @@ import NavbarLink from "../components/NavbarLink"
 import PrimaryButton from "../components/PrimaryButton"
 import SiteLogo from "../components/SiteLogo"
 import { User } from "../types/User"
-import Loading from "./Loading"
 import styles from "./TopNavigation.module.css"
 
 const elements = [
@@ -21,6 +20,7 @@ const ME_QUERY = gql`
   query {
     me {
       nickname
+      profilePicUrl
       tokens {
         id
         token
@@ -79,7 +79,7 @@ const LoginSignup = (): JSX.Element => (
 
 const TopNavigation = (): JSX.Element => {
   const router = useRouter()
-  const { loading, data } = useQuery<{ me: User }>(ME_QUERY)
+  const { loading, data, error } = useQuery<{ me: User }>(ME_QUERY)
 
   const links = elements.map((e, k) => (
     <span style={{ marginLeft: k ? "1.5em" : "none" }} key={e.text}>
@@ -90,7 +90,7 @@ const TopNavigation = (): JSX.Element => {
   ))
 
   if (loading) {
-    return <Loading />
+    return <p>Loading...</p>
   }
 
   return (
@@ -101,7 +101,7 @@ const TopNavigation = (): JSX.Element => {
         <Hidden xs>
           <div className={styles.group}>
             <ul className={styles.links}>{links}</ul>
-            {data !== undefined ? (
+            {data !== undefined && !error ? (
               <ProfilePic profilePicture={data.me.profilePicUrl} />
             ) : (
               <LoginSignup />
@@ -110,7 +110,7 @@ const TopNavigation = (): JSX.Element => {
         </Hidden>
 
         <Visible xs>
-          {data !== undefined ? (
+          {data !== undefined && !error ? (
             <ProfilePic profilePicture={data.me.profilePicUrl} />
           ) : (
             <LoginSignup />

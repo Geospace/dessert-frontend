@@ -45,17 +45,17 @@ const REVOKE_MUTATION = gql`
 `
 
 const Index = (): JSX.Element => {
-  const [logout] = useMutation(LOGOUT_MUTATION)
+  const [logout, { client }] = useMutation(LOGOUT_MUTATION)
   const [revoke] = useMutation(REVOKE_MUTATION)
-  const { loading, data } = useQuery<{ me: User }>(ME_QUERY)
+  const { loading, error, data } = useQuery<{ me: User }>(ME_QUERY)
   const router = useRouter()
 
   if (loading) {
     return <Loading />
   }
 
-  if (!data || !data.me) {
-    return <p>Somthing bad happened...</p>
+  if (!data || !data.me || error) {
+    return <p>Something bad happened...</p>
   }
 
   return (
@@ -138,6 +138,7 @@ const Index = (): JSX.Element => {
             logout()
               .then(() => {
                 toast.success("You have been logged out")
+                client?.resetStore().then()
                 router.push("/")
               })
               .catch(() => {
