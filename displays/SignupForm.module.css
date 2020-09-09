@@ -1,0 +1,25 @@
+.box {
+  padding: 1.3em 1.2em;
+  width: 280px;
+  margin: 0 auto;
+  margin-top: 2em;
+
+  border: 1px solid #dedede;
+  border-radius: var(--radius-box);
+  box-sizing: border-box;
+}
+
+.box input {
+  margin-top: 0.3em;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 0.8em;
+  display: block;
+}
+
+/* TODO: Make a component out of this? */
+.group {
+  margin-bottom: 1.5em;
+}

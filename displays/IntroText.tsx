@@ -1,13 +1,13 @@
-import styles from './IntroText.module.css';
+import styles from "./IntroText.module.css"
 
 interface Props {
-  children: string;
+  children: string
 }
 
 const IntroText = ({ children }: Props): JSX.Element => (
   <div className={styles.wrapper}>
     <p className={styles.text}>{children}</p>
   </div>
-);
+)
 
-export default IntroText;
+export default IntroText

@@ -1,14 +1,16 @@
-import styles from './BigOutlineButton.module.css';
+import Link from "next/link"
+
+import styles from "./BigOutlineButton.module.css"
 
 interface Props {
-  to: string;
-  children: string;
+  to: string
+  children: string
 }
 
 const BigOutlineButton = ({ to, children }: Props): JSX.Element => (
-  <a href={to} className={styles.button}>
-    {children}
-  </a>
-);
+  <Link href={to}>
+    <a className={styles.button}>{children}</a>
+  </Link>
+)
 
-export default BigOutlineButton;
+export default BigOutlineButton

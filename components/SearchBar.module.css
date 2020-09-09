@@ -1,0 +1,24 @@
+.form > * {
+  margin: 10px;
+}
+
+.submit {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary) !important;
+  padding: 0.5em 0.8em;
+  border-radius: var(--radius-button);
+  border: var(--border-button);
+}
+
+.select {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary) !important;
+  padding: 0.5em 0.8em;
+  border-radius: var(--radius-button);
+  border: var(--border-button);
+}
+
+.input {
+  width: 60%;
+  height: 2.5em;
+}

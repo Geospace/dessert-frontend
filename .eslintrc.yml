@@ -15,8 +15,15 @@ plugins:
   - prettier
 
 rules:
-  react/react-in-jsx-scope: off
-  react/jsx-one-expression-per-line: off
-  jsx-a11y/label-has-associated-control: off
-  jsx-a11y/anchor-is-valid: off
-  prettier/prettier: error
+  "react/react-in-jsx-scope": off
+  "react/jsx-one-expression-per-line": off
+  "jsx-a11y/label-has-associated-control": off
+  "jsx-a11y/click-events-have-key-events": off
+  "jsx-a11y/no-static-element-interactions": off
+  "jsx-a11y/anchor-is-valid": off
+  "jsx-a11y/accessible-emoji": off
+  "prettier/prettier": error
+  "@typescript-eslint/semi": off
+  "@typescript-eslint/quotes": off
+  "@typescript-eslint/indent": off
+  "@typescript-eslint/member-delimiter-style": off

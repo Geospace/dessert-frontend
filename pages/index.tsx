@@ -1,10 +1,10 @@
-import Head from 'next/head';
+import Head from "next/head"
 
-import RegularLayout from '../displays/RegularLayout';
-import SiteLogo from '../components/SiteLogo';
-import IntroText from '../displays/IntroText';
-import IntroGrid from '../displays/IntroGrid';
-import BigOutlineButton from '../components/BigOutlineButton';
+import BigOutlineButton from "../components/BigOutlineButton"
+import SiteLogo from "../components/SiteLogo"
+import IntroGrid from "../displays/IntroGrid"
+import IntroText from "../displays/IntroText"
+import RegularLayout from "../displays/RegularLayout"
 
 const Index = (): JSX.Element => (
   <>
@@ -15,9 +15,9 @@ const Index = (): JSX.Element => (
     <RegularLayout>
       <div
         style={{
-          textAlign: 'center',
-          paddingTop: '4em',
-          marginBottom: '4em',
+          textAlign: "center",
+          paddingTop: "4em",
+          marginBottom: "4em",
         }}
       >
         <SiteLogo size={4} />
@@ -25,9 +25,9 @@ const Index = (): JSX.Element => (
 
       <div
         style={{
-          maxWidth: '32em',
-          margin: '0 auto',
-          marginBottom: '4em',
+          maxWidth: "32em",
+          margin: "0 auto",
+          marginBottom: "4em",
         }}
       >
         <IntroText>
@@ -39,9 +39,9 @@ const Index = (): JSX.Element => (
 
       <div
         style={{
-          maxWidth: '32em',
-          margin: '0 auto',
-          marginBottom: '3em',
+          maxWidth: "32em",
+          margin: "0 auto",
+          marginBottom: "3em",
         }}
       >
         <IntroGrid />
@@ -49,9 +49,9 @@ const Index = (): JSX.Element => (
 
       <div
         style={{
-          maxWidth: '28em',
-          margin: '0 auto',
-          marginBottom: '4em',
+          maxWidth: "28em",
+          margin: "0 auto",
+          marginBottom: "4em",
         }}
       >
         <IntroText>
@@ -60,11 +60,11 @@ const Index = (): JSX.Element => (
         </IntroText>
       </div>
 
-      <div style={{ textAlign: 'center', marginBottom: '4em' }}>
-        <BigOutlineButton to="#">Get Started →</BigOutlineButton>
+      <div style={{ textAlign: "center", marginBottom: "4em" }}>
+        <BigOutlineButton to="/signup">Get Started →</BigOutlineButton>
       </div>
     </RegularLayout>
   </>
-);
+)
 
-export default Index;
+export default Index

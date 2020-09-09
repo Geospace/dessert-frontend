@@ -1,0 +1,10 @@
+.box {
+  padding: 1.3em 1.2em;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2em;
+
+  border: 1px solid #dedede;
+  border-radius: var(--radius-box);
+  box-sizing: border-box;
+}
