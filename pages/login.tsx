@@ -28,6 +28,15 @@ const LogIn = (): JSX.Element => {
           <ThinTitle size={1.5}>Log In to Dessert</ThinTitle>
         </div>
         <LogInForm />
+          <div>
+                                          <h1>Sign with GitHub</h1>
+                                          <form action="https://prod.dessert.vodka/signin" method="post">
+                                          <input type="hidden" name="Provider" value="GitHub" />
+
+                                          <button type="submit">Connect using GitHub</button>
+                                          </form>
+                                          </div>
+
       </RegularLayout>
     </>
   )
