@@ -110,7 +110,7 @@ const Modules = (): JSX.Element => {
         />
 
         {q === "" && (
-          <div style={{ display: "flex", marginTop: "1em 0" }}>
+          <div style={{ display: "flex", marginTop: "1em" }}>
             {featuredList.map(module => <FeaturedModule module={module} />)}
           </div>
         )}
