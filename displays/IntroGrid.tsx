@@ -43,18 +43,18 @@ const IntroGrid = (): JSX.Element => {
         </ConfiguredCol>
         <ConfiguredCol title="Modern">
           Dessert and WebAssembly brings near-native performance in the browser.{" "}
-          <a href="#">Learn more here.</a>
+          <a href="/learn">Learn more here.</a>
         </ConfiguredCol>
       </Row>
 
       <Row>
         <ConfiguredCol title="Open Source">
           Dessert is a free, open source, and community-driven. All
-          contributions are welcome! <a href="#">Read the guide.</a>
+          contributions are welcome! <a href="/learn">Read the guide.</a>
         </ConfiguredCol>
         <ConfiguredCol title="Incremental">
           Incrementally introduce WebAssembly into your codebase, with the tools{" "}
-          <a href="#">you are already using</a>.
+          <a href="modules">you are already using</a>.
         </ConfiguredCol>
       </Row>
     </Container>
