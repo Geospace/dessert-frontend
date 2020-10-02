@@ -39,31 +39,31 @@ interface FeaturedModule {
 
 const featuredList: FeaturedModule[] = [
   {
-    id: 1,
+    id: 2,
     name: "dessert-yaml-js",
     description: "yaml-js but with WebAssembly",
     authorName: "Lucas",
   },
   {
-    id: 2,
+    id: 8,
     name: "dessert-jsonschema",
     description: "JSONSchema but with WebAssembly",
     authorName: "Lucas",
   },
   {
-    id: 3,
+    id: 5,
     name: "dessert-filesize",
     description: "filesize.js but with WebAssembly",
     authorName: "Lucas",
   },
   {
-    id: 4,
+    id: 9,
     name: "dessert-showdown",
     description: "ShowDown but with WebAssembly",
     authorName: "Lucas",
   },
   {
-    id: 5,
+    id: 1,
     name: "dessert-js-yaml",
     description: "js-yaml but with WebAssembly",
     authorName: "Lucas",
@@ -92,11 +92,8 @@ const FeaturedModule = ({
         "0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 rgba(100, 100, 100, 0.2)",
     }}
   >
-    <h3 style={{ margin: "0.3em 0", minWidth: "18em" }}>
+    <h3 style={{ margin: "0.3em 0", minWidth: "14em" }}>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ padding: "0 10px 15px 0", fontSize: "85%" }}>
-          🎉 Featured
-        </div>
         <Link href={`/module/${module.id}`}>
           <a>{module.name}</a>
         </Link>
@@ -132,7 +129,7 @@ const Modules = (): JSX.Element => {
         <title>Search Modules</title>
       </Head>
 
-      <RegularLayout maxWidth="42em">
+      <RegularLayout maxWidth="58em">
         <h2>Search Modules</h2>
         <Input
           placeholder="Search anything"
@@ -152,14 +149,15 @@ const Modules = (): JSX.Element => {
 
         {q === "" && (
           <div>
-            <h2 style={{ marginTop: "1em" }}>Featured</h2>
-            <div style={{ display: "flex" }}>
-              {featuredList.slice(0, 3).map((module) => (
-                <FeaturedModule module={module} />
-              ))}
-            </div>
-            <div style={{ display: "flex" }}>
-              {featuredList.slice(3, 6).map((module) => (
+            <h2 style={{ marginTop: "1em" }}>🎉 Featured</h2>
+            <div
+              style={{
+                display: "flex",
+                flexFlow: "row wrap",
+                width: "100%",
+              }}
+            >
+              {featuredList.map((module) => (
                 <FeaturedModule module={module} />
               ))}
             </div>

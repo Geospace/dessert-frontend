@@ -1,5 +1,4 @@
 import Head from "next/head"
-import { useState } from "react"
 
 import BigOutlineButton from "../components/BigOutlineButton"
 import SiteLogo from "../components/SiteLogo"
@@ -8,7 +7,6 @@ import IntroText from "../displays/IntroText"
 import RegularLayout from "../displays/RegularLayout"
 
 const Index = (): JSX.Element => {
-  const [hidden, setHidden] = useState(false)
   return (
     <>
       <Head>
@@ -21,25 +19,26 @@ const Index = (): JSX.Element => {
             maxWidth: "32em",
             margin: "0 auto",
             marginBottom: "4em",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
+          {/* Demo Video goes here */}
+          <img
+            src="/video.png"
+            alt="demo"
+            style={{
+              height: "300px",
+              marginTop: "3em",
+            }}
+          />
+
           <IntroText>
             Dessert helps you transition from JavaScript to WebAssembly. We
             provide drop-in replacements for the modules you are already using
             and that slow down your application.
           </IntroText>
-
-          {!hidden && (
-            <a href="#" onClick={() => setHidden((h) => !h)}>
-              <div
-                style={{
-                  margin: "4em 0",
-                  height: "300px",
-                  border: "solid 1px black",
-                }}
-              />
-            </a>
-          )}
 
           <div style={{ textAlign: "center", marginTop: "4em" }}>
             <BigOutlineButton to="/modules">Get Started →</BigOutlineButton>
