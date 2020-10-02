@@ -1,7 +1,7 @@
 import Head from "next/head"
 
 import BigOutlineButton from "../components/BigOutlineButton"
-import SiteLogo from "../components/SiteLogo"
+// import SiteLogo from "../components/SiteLogo"
 import IntroGrid from "../displays/IntroGrid"
 import IntroText from "../displays/IntroText"
 import RegularLayout from "../displays/RegularLayout"
@@ -30,7 +30,7 @@ const Index = (): JSX.Element => {
             alt="demo"
             style={{
               height: "300px",
-              marginTop: "3em",
+              margin: "2em 0",
             }}
           />
 

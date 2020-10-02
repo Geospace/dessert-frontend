@@ -76,13 +76,20 @@ const featuredList: FeaturedModule[] = [
   },
 ]
 
-const FeaturedModule = ({
+const SectionTitle = ({
+  children,
+}: {
+  children: React.ReactNode
+}): JSX.Element => (
+  <div style={{ fontWeight: "bold", margin: "2em 0 1em 0" }}>{children}</div>
+)
+
+const FeaturedModuleComponent = ({
   module,
 }: {
   module: FeaturedModule
 }): JSX.Element => (
   <div
-    key={module.id}
     style={{
       margin: "0em 1em 1em 0",
       border: "1px solid rgba(100, 100, 100, 0.2)",
@@ -90,9 +97,10 @@ const FeaturedModule = ({
       padding: "0.8em",
       boxShadow:
         "0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 rgba(100, 100, 100, 0.2)",
+      width: "16em",
     }}
   >
-    <h3 style={{ margin: "0.3em 0", minWidth: "14em" }}>
+    <h3 style={{ margin: "0.3em 0" }}>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Link href={`/module/${module.id}`}>
           <a>{module.name}</a>
@@ -111,6 +119,26 @@ const FeaturedModule = ({
   </div>
 )
 
+const TagComponent = ({ children }: { children: string }): JSX.Element => {
+  const router = useRouter()
+
+  return (
+    <div
+      style={{
+        border: "1px solid rgba(199, 21, 133, 0.2)",
+        backgroundColor: "rgba(199, 21, 133, 0.05)",
+        color: "rgba(199, 21, 133, 0.9)",
+        borderRadius: "3px",
+        padding: "0.2em 0.4em",
+        marginRight: "0.5em",
+        cursor: "pointer",
+      }}
+      onClick={() => router.push(`/modules?q=${children}`)}
+    >
+      {children}
+    </div>
+  )
+}
 const Modules = (): JSX.Element => {
   const router = useRouter()
   const q = router.query.q?.toString() || ""
@@ -129,36 +157,49 @@ const Modules = (): JSX.Element => {
         <title>Search Modules</title>
       </Head>
 
-      <RegularLayout maxWidth="58em">
+      <RegularLayout maxWidth="100%">
         <h2>Search Modules</h2>
-        <Input
-          placeholder="Search anything"
-          onChange={(e) => {
-            if (e.currentTarget.value.length > 0) {
-              router.push(`/modules?q=${e.currentTarget.value}`, undefined, {
-                shallow: true,
-              })
-            } else {
-              router.push("/modules", undefined, {
-                shallow: true,
-              })
-            }
-          }}
-          value={q}
-        />
+        {/* Add conditional for mobile layout */}
+        <div style={{ width: "calc(2 * 16em + 1 * 1em + 4 * 0.8em)" }}>
+          <Input
+            placeholder="Search anything"
+            onChange={(e) => {
+              if (e.currentTarget.value.length > 0) {
+                router.push(`/modules?q=${e.currentTarget.value}`, undefined, {
+                  shallow: true,
+                })
+              } else {
+                router.push("/modules", undefined, {
+                  shallow: true,
+                })
+              }
+            }}
+            value={q}
+          />
+        </div>
 
         {q === "" && (
           <div>
-            <h2 style={{ margin: "1.2em 0 0.8em 0" }}>🎉 Featured</h2>
+            <SectionTitle>📈 Popular Tags</SectionTitle>
+            <div
+              style={{
+                display: "flex",
+              }}
+            >
+              <TagComponent>Yaml</TagComponent>
+              <TagComponent>JSON</TagComponent>
+              <TagComponent>WebAssembly</TagComponent>
+            </div>
+
+            <SectionTitle>⭐ Featured Modules</SectionTitle>
             <div
               style={{
                 display: "flex",
                 flexFlow: "row wrap",
-                width: "100%",
               }}
             >
               {featuredList.map((module) => (
-                <FeaturedModule module={module} />
+                <FeaturedModuleComponent key={module.id} module={module} />
               ))}
             </div>
           </div>
