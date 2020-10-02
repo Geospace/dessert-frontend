@@ -32,17 +32,55 @@ const SEARCH_QUERY = gql`
 
 interface FeaturedModule {
   id: number
-  name: String
-  description: String
-  authorName: String
+  name: string
+  description: string
+  authorName: string
 }
 
 const featuredList: FeaturedModule[] = [
-  {id: 2, name: "dessert-yaml-js", description: "yaml-js but with WebAssembly", authorName: "Lucas"},
-  {id: 1, name: "dessert-js-yaml", description: "js-yaml but with WebAssembly", authorName: "Lucas"}
-];
+  {
+    id: 1,
+    name: "dessert-yaml-js",
+    description: "yaml-js but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 2,
+    name: "dessert-jsonschema",
+    description: "JSONSchema but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 3,
+    name: "dessert-filesize",
+    description: "filesize.js but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 4,
+    name: "dessert-showdown",
+    description: "ShowDown but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 5,
+    name: "dessert-js-yaml",
+    description: "js-yaml but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 6,
+    name: "dessert-markdown-core",
+    description: "WASM core for showdown module",
+    authorName: "Lucas",
+  },
+]
 
-const FeaturedModule = ({ module }: { module: FeaturedModule}): JSX.Element => (
+const FeaturedModule = ({
+  module,
+}: {
+  module: FeaturedModule
+}): JSX.Element => (
   <div
     key={module.id}
     style={{
@@ -50,13 +88,16 @@ const FeaturedModule = ({ module }: { module: FeaturedModule}): JSX.Element => 
       border: "1px solid rgba(100, 100, 100, 0.2)",
       borderRadius: "5px",
       padding: "0.8em",
-      boxShadow: "0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 rgba(100, 100, 100, 0.2)"
+      boxShadow:
+        "0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 rgba(100, 100, 100, 0.2)",
     }}
   >
     <h3 style={{ margin: "0.3em 0", minWidth: "18em" }}>
-      <div style={{display: "flex", flexDirection: "column"}}>
-        <div style={{ padding: "0 10px 15px 0", fontSize: "85%" }}>🎉 Featured</div>
-        <Link href={`/module/${ module.id }`}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ padding: "0 10px 15px 0", fontSize: "85%" }}>
+          🎉 Featured
+        </div>
+        <Link href={`/module/${module.id}`}>
           <a>{module.name}</a>
         </Link>
       </div>
@@ -110,8 +151,18 @@ const Modules = (): JSX.Element => {
         />
 
         {q === "" && (
-          <div style={{ display: "flex", marginTop: "1em" }}>
-            {featuredList.map(module => <FeaturedModule module={module} />)}
+          <div>
+            <h2 style={{ marginTop: "1em" }}>Featured</h2>
+            <div style={{ display: "flex" }}>
+              {featuredList.slice(0, 3).map((module) => (
+                <FeaturedModule module={module} />
+              ))}
+            </div>
+            <div style={{ display: "flex" }}>
+              {featuredList.slice(3, 6).map((module) => (
+                <FeaturedModule module={module} />
+              ))}
+            </div>
           </div>
         )}
 

@@ -18,30 +18,6 @@ const Index = (): JSX.Element => {
       <RegularLayout>
         <div
           style={{
-            padding: "2em 0",
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-        >
-          🎤 We want to hear from you! Take our{" "}
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfD-PXG2-rTbvAc42vAF6oPt5nI8L8yaCEsWDxUb6NM46h5_Q/viewform">
-            5 minutes survey
-          </a>
-          !
-        </div>
-
-        <div
-          style={{
-            textAlign: "center",
-            paddingTop: "1em",
-            marginBottom: "4em",
-          }}
-        >
-          <SiteLogo size={4} />
-        </div>
-
-        <div
-          style={{
             maxWidth: "32em",
             margin: "0 auto",
             marginBottom: "4em",
