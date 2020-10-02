@@ -84,7 +84,7 @@ const FeaturedModule = ({
   <div
     key={module.id}
     style={{
-      margin: "1em 1em 1em 0",
+      margin: "0em 1em 1em 0",
       border: "1px solid rgba(100, 100, 100, 0.2)",
       borderRadius: "5px",
       padding: "0.8em",
@@ -149,7 +149,7 @@ const Modules = (): JSX.Element => {
 
         {q === "" && (
           <div>
-            <h2 style={{ marginTop: "1em" }}>🎉 Featured</h2>
+            <h2 style={{ margin: "1.2em 0 0.8em 0" }}>🎉 Featured</h2>
             <div
               style={{
                 display: "flex",
