@@ -54,9 +54,26 @@ const Index = (): JSX.Element => {
 
         <div
           style={{
+            marginBottom: "4em",
+          }}
+        >
+          <iframe
+            style={{
+              margin: "0 auto",
+              display: "block",
+            }}
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/mPdi8EeAkj8"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
+        </div>
+
+        <div
+          style={{
             maxWidth: "28em",
             margin: "0 auto",
-            marginBottom: "4em",
+            marginBottom: "5em",
           }}
         >
           <IntroText>

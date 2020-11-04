@@ -19,6 +19,7 @@ const ME_QUERY = gql`
   query {
     me {
       nickname
+      email
       tokens {
         id
         token
@@ -83,7 +84,7 @@ const Profile = (): JSX.Element => {
 
         <p>
           The mail address associated to your account is&nbsp;
-          <b>lucas.santoni@epitech.eu</b>.
+          <b>{data.me.email.toLowerCase()}</b>.
         </p>
 
         <h3>Tokens</h3>

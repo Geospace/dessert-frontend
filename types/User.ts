@@ -5,6 +5,7 @@ import { Token } from "./Token"
 export interface User {
   nickname: string
   login: string
+  email: string
   profilePicUrl: string
   tokens: Token[]
   modules: { result: Module[] }
