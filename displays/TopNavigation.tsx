@@ -23,6 +23,7 @@ const elements = [
     to: "https://www.notion.so/Who-are-we-1d21260779c64e6da6b439c4076c0309",
     text: "About",
   },
+  { to: "/contact", text: "Contact" },
 ]
 
 // Query some information about the connected user

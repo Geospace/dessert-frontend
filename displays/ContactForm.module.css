@@ -1,0 +1,22 @@
+.box {
+  padding: 1.3em 1.2em;
+  width: 500px;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+.box input,
+.box textarea {
+  margin-top: 0.3em;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 0.8em;
+  display: block;
+}
+
+.group {
+  margin-bottom: 1.5em;
+}
