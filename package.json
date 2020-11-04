@@ -15,7 +15,7 @@
     "github-markdown-css": "^4.0.0",
     "graphql": "^15.3.0",
     "mobile-detect": "^1.4.4",
-    "next": "9.5.4",
+    "next": "^10.0.1",
     "normalize.css": "^8.0.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
