@@ -30,6 +30,115 @@ const SEARCH_QUERY = gql`
   }
 `
 
+interface FeaturedModule {
+  id: number
+  name: string
+  description: string
+  authorName: string
+}
+
+const featuredList: FeaturedModule[] = [
+  {
+    id: 2,
+    name: "dessert-yaml-js",
+    description: "yaml-js but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 8,
+    name: "dessert-jsonschema",
+    description: "JSONSchema but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 5,
+    name: "dessert-filesize",
+    description: "filesize.js but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 9,
+    name: "dessert-showdown",
+    description: "ShowDown but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 1,
+    name: "dessert-js-yaml",
+    description: "js-yaml but with WebAssembly",
+    authorName: "Lucas",
+  },
+  {
+    id: 6,
+    name: "dessert-markdown-core",
+    description: "WASM core for showdown module",
+    authorName: "Lucas",
+  },
+]
+
+const SectionTitle = ({
+  children,
+}: {
+  children: React.ReactNode
+}): JSX.Element => (
+  <div style={{ fontWeight: "bold", margin: "2em 0 1em 0" }}>{children}</div>
+)
+
+const FeaturedModuleComponent = ({
+  module,
+}: {
+  module: FeaturedModule
+}): JSX.Element => (
+  <div
+    style={{
+      margin: "0em 1em 1em 0",
+      border: "1px solid rgba(100, 100, 100, 0.2)",
+      borderRadius: "5px",
+      padding: "0.8em",
+      boxShadow:
+        "0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 rgba(100, 100, 100, 0.2)",
+      width: "16em",
+    }}
+  >
+    <h3 style={{ margin: "0.3em 0" }}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <Link href={`/module/${module.id}`}>
+          <a>{module.name}</a>
+        </Link>
+      </div>
+    </h3>
+    <p style={{ margin: "0.4em 0" }}>{module.description}</p>
+    <p
+      style={{
+        margin: "0.4em 0",
+        color: "#ccc",
+      }}
+    >
+      By {module.authorName}{" "}
+    </p>
+  </div>
+)
+
+const TagComponent = ({ children }: { children: string }): JSX.Element => {
+  const router = useRouter()
+
+  return (
+    <div
+      style={{
+        border: "1px solid rgba(199, 21, 133, 0.2)",
+        backgroundColor: "rgba(199, 21, 133, 0.05)",
+        color: "rgba(199, 21, 133, 0.9)",
+        borderRadius: "3px",
+        padding: "0.2em 0.4em",
+        marginRight: "0.5em",
+        cursor: "pointer",
+      }}
+      onClick={() => router.push(`/modules?q=${children}`)}
+    >
+      {children}
+    </div>
+  )
+}
 const Modules = (): JSX.Element => {
   const router = useRouter()
   const q = router.query.q?.toString() || ""
@@ -48,26 +157,52 @@ const Modules = (): JSX.Element => {
         <title>Search Modules</title>
       </Head>
 
-      <RegularLayout maxWidth="42em">
+      <RegularLayout maxWidth="100%">
         <h2>Search Modules</h2>
-        <Input
-          placeholder="Search anything"
-          onChange={(e) => {
-            if (e.currentTarget.value.length > 0) {
-              router.push(`/modules?q=${e.currentTarget.value}`, undefined, {
-                shallow: true,
-              })
-            } else {
-              router.push("/modules", undefined, {
-                shallow: true,
-              })
-            }
-          }}
-          value={q}
-        />
+        {/* Add conditional for mobile layout */}
+        <div style={{ width: "calc(2 * 16em + 1 * 1em + 4 * 0.8em)" }}>
+          <Input
+            placeholder="Search anything"
+            onChange={(e) => {
+              if (e.currentTarget.value.length > 0) {
+                router.push(`/modules?q=${e.currentTarget.value}`, undefined, {
+                  shallow: true,
+                })
+              } else {
+                router.push("/modules", undefined, {
+                  shallow: true,
+                })
+              }
+            }}
+            value={q}
+          />
+        </div>
 
         {q === "" && (
-          <p>Please search for something in order to get results...</p>
+          <div>
+            <SectionTitle>📈 Popular Tags</SectionTitle>
+            <div
+              style={{
+                display: "flex",
+              }}
+            >
+              <TagComponent>Yaml</TagComponent>
+              <TagComponent>JSON</TagComponent>
+              <TagComponent>WebAssembly</TagComponent>
+            </div>
+
+            <SectionTitle>⭐ Featured Modules</SectionTitle>
+            <div
+              style={{
+                display: "flex",
+                flexFlow: "row wrap",
+              }}
+            >
+              {featuredList.map((module) => (
+                <FeaturedModuleComponent key={module.id} module={module} />
+              ))}
+            </div>
+          </div>
         )}
 
         {q !== "" && loading && <p>Loading...</p>}

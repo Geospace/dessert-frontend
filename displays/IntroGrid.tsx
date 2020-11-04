@@ -39,22 +39,30 @@ const IntroGrid = (): JSX.Element => {
       >
         <ConfiguredCol title="Easy">
           Dessert modules are drop-in replacements for their JavaScript
-          counterparts. <a href="#">Take our tour.</a>
+          counterparts.{" "}
+          <a href="https://www.notion.so/Quickstart-guide-a1b815606d6746889abcd8b4e96bfe92">
+            Take our tour.
+          </a>
         </ConfiguredCol>
         <ConfiguredCol title="Modern">
           Dessert and WebAssembly brings near-native performance in the browser.{" "}
-          <a href="#">Learn more here.</a>
+          <a href="https://www.notion.so/Why-Dessert-db8345650009409fa7e5b3b94c30378e">
+            Learn more here.
+          </a>
         </ConfiguredCol>
       </Row>
 
       <Row>
         <ConfiguredCol title="Open Source">
           Dessert is a free, open source, and community-driven. All
-          contributions are welcome! <a href="#">Read the guide.</a>
+          contributions are welcome!{" "}
+          <a href="https://www.notion.so/Contributing-Guide-3cd42febbf66421084693774b47f39f0">
+            Read the guide.
+          </a>
         </ConfiguredCol>
         <ConfiguredCol title="Incremental">
           Incrementally introduce WebAssembly into your codebase, with the tools{" "}
-          <a href="#">you are already using</a>.
+          <a href="/modules">you are already using</a>.
         </ConfiguredCol>
       </Row>
     </Container>
