@@ -1,5 +1,7 @@
 import styles from "./Input.module.css"
 
+// A very global input component
+
 interface Props {
   inputType?: string
   value?: string

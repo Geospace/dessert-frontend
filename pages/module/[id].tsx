@@ -8,6 +8,11 @@ import Loading from "../../displays/Loading"
 import RegularLayout from "../../displays/RegularLayout"
 import { Module as ModuleType } from "../../types/Module"
 
+// This page shows information about one module
+// The ID of said module is in the URL so such pages can be shared
+// via links which is important inside a group of developers
+
+// Fetch information about one module, by ID
 const MODULE_QUERY = gql`
   query($id: Int!) {
     module(id: $id) {
@@ -19,8 +24,10 @@ const MODULE_QUERY = gql`
   }
 `
 
+// We rely on the GitHub API to retrieve the README of the modules
 const API_BASE = "https://api.github.com/repos/"
 
+// Local component that allows to combine an icon and some text
 const Tag = ({
   children,
   icon,
@@ -66,6 +73,7 @@ const Module = (): JSX.Element => {
       return
     }
 
+    // Fetch data from the GitHub API
     const url = API_BASE + data.module.githubLink.split("/").splice(3).join("/")
     fetch(url)
       .then((resp) => resp.json())

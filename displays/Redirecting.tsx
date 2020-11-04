@@ -2,6 +2,8 @@ import Head from "next/head"
 
 import RegularLayout from "./RegularLayout"
 
+// Same logic as the Loading component
+
 const Redirecting = (): JSX.Element => (
   <>
     <Head>

@@ -8,6 +8,8 @@ import Input from "../components/Input"
 import LargeButton from "../components/LargeButton"
 import styles from "./LoginForm.module.css"
 
+// See LoginForm, this is the exact same thing
+
 const Label = ({ children }: { children: string }): JSX.Element => (
   <label className={styles.label}>{children}</label>
 )

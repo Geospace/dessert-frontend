@@ -9,6 +9,12 @@ import Loading from "../displays/Loading"
 import RegularLayout from "../displays/RegularLayout"
 import { User } from "../types/User"
 
+// The profile page
+// The user must be logged in order to access this
+// Show various information and give access to some settings
+
+// Retrieve information about the connected user
+// and get its last five modules (at most)
 const ME_QUERY = gql`
   query {
     me {
@@ -32,19 +38,22 @@ const ME_QUERY = gql`
   }
 `
 
+// Trigger a logout
 const LOGOUT_MUTATION = gql`
   mutation {
     logout
   }
 `
 
+// Allows to revoke (delete) a token
+// Tokens are created from the CLI only
 const REVOKE_MUTATION = gql`
   mutation($token: String) {
     deleteToken(token: $token)
   }
 `
 
-const Index = (): JSX.Element => {
+const Profile = (): JSX.Element => {
   const [logout, { client }] = useMutation(LOGOUT_MUTATION)
   const [revoke] = useMutation(REVOKE_MUTATION)
   const { loading, error, data } = useQuery<{ me: User }>(ME_QUERY)
@@ -70,6 +79,11 @@ const Index = (): JSX.Element => {
         <p>
           This is your profile. Only you can see this. Here you can view your
           latest uploaded modules and update your user preferences.
+        </p>
+
+        <p>
+          The mail address associated to your account is&nbsp;
+          <b>lucas.santoni@epitech.eu</b>.
         </p>
 
         <h3>Tokens</h3>
@@ -133,21 +147,23 @@ const Index = (): JSX.Element => {
           to the home page.
         </p>
 
-        <PrimaryButton
-          onClick={() => {
-            logout()
-              .then(() => {
-                toast.success("You have been logged out")
-                client?.resetStore().then()
-                router.push("/")
-              })
-              .catch(() => {
-                toast.error("An error occured, you were not logged out")
-              })
-          }}
-        >
-          Disconnect
-        </PrimaryButton>
+        <div style={{ marginBottom: "2em" }}>
+          <PrimaryButton
+            onClick={() => {
+              logout()
+                .then(() => {
+                  toast.success("You have been logged out")
+                  client?.resetStore().then()
+                  router.push("/")
+                })
+                .catch(() => {
+                  toast.error("An error occured, you were not logged out")
+                })
+            }}
+          >
+            Disconnect
+          </PrimaryButton>
+        </div>
 
         <h3>Support</h3>
 
@@ -160,4 +176,4 @@ const Index = (): JSX.Element => {
   )
 }
 
-export default Index
+export default Profile

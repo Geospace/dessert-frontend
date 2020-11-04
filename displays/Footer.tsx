@@ -1,6 +1,8 @@
 import SiteLogo from "../components/SiteLogo"
 import style from "./Footer.module.css"
 
+// The footer of the website, should be present every page
+
 const Footer = (): JSX.Element => (
   <div className={style.footer}>
     <p>

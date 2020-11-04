@@ -4,6 +4,9 @@ import Footer from "./Footer"
 import style from "./RegularLayout.module.css"
 import TopNavigation from "./TopNavigation"
 
+// Most pages are wrapped into the component
+// General margins and styling are handled here
+
 interface Props {
   children: React.ReactNode
   footer?: boolean

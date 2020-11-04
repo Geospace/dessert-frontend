@@ -3,7 +3,10 @@ import Link from "next/link"
 
 import RegularLayout from "../displays/RegularLayout"
 
-const Index = (): JSX.Element => (
+// The blog is a collection of statically generated pages
+// See here for tutorial: https://johnpolacek.com/building-a-blog-with-nextjs-and-mdx
+
+const Blog = (): JSX.Element => (
   <>
     <Head>
       <title>Blog</title>
@@ -30,4 +33,4 @@ const Index = (): JSX.Element => (
   </>
 )
 
-export default Index
+export default Blog

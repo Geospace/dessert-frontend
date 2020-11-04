@@ -2,6 +2,8 @@ import Link from "next/link"
 
 import styles from "./PrimaryButton.module.css"
 
+// Our primary button, filled
+
 interface Props {
   to?: string
   onClick?: () => void

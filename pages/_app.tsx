@@ -19,20 +19,31 @@ import { ToastContainer } from "react-toastify"
 
 import Theme from "../displays/Theme"
 
+// This is NOT an actual page. See Next.js documentation for more
+// information on this file:
+// https://nextjs.org/docs/advanced-features/custom-app
+
+// See below for more information
 interface Props {
   screenClass: ScreenClass
 }
 
+// Back-end GraphQL endpoint
+// We have a cookie based authentication
 const link = createHttpLink({
   uri: "https://prod.dessert.vodka/",
   credentials: "include",
 })
 
+// Apollo is a GraphQL client for React. It offers a hooks-based API
+// so each component is responsible for its own queries.
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link,
 })
 
+// Declaring a custom `App` in Next.js allows to tweak page generation
+// seettings. In our case it is needed to configure our react-grid-system.
 class MyApp extends App {
   static getInitialProps = async ({
     ctx,
@@ -44,6 +55,7 @@ class MyApp extends App {
       userAgent = ctx?.req?.headers["user-agent"] || ""
     }
 
+    // We try to guess the correct screen class
     const md = new MobileDetect(userAgent)
 
     let screenClass = "xl"

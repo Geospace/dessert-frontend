@@ -8,10 +8,16 @@ import Input from "../components/Input"
 import LargeButton from "../components/LargeButton"
 import styles from "./LoginForm.module.css"
 
+// The login form
+// All the login logic is here too
+
+// Proxy component to apply some styling on the labels
 const Label = ({ children }: { children: string }): JSX.Element => (
   <label className={styles.label}>{children}</label>
 )
 
+// Log an user on the server
+// The request will fail is the credentials are wrong
 const LOGIN_MUTATION = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password, remember: true) {
@@ -31,6 +37,8 @@ const LogInForm = (): JSX.Element => {
   const [login] = useMutation(LOGIN_MUTATION)
   const router = useRouter()
 
+  // The form itself does NOT do the request (preventDefault)
+  // See the call to login in the onClick of LargeButton
   return (
     <>
       <div className={styles.box}>

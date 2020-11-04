@@ -2,6 +2,8 @@ import { FormEvent, useState } from "react"
 
 import styles from "./SearchBar.module.css"
 
+// A customizable sidebar
+
 interface Props {
   onSearch: (s: string, type?: string) => void
 }

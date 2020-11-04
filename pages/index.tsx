@@ -1,10 +1,13 @@
 import Head from "next/head"
 
 import BigOutlineButton from "../components/BigOutlineButton"
-// import SiteLogo from "../components/SiteLogo"
+import SiteLogo from "../components/SiteLogo"
 import IntroGrid from "../displays/IntroGrid"
 import IntroText from "../displays/IntroText"
 import RegularLayout from "../displays/RegularLayout"
+
+// The index is what the user sees when he reaches /
+// Nothing special here, just some static text with catchy information
 
 const Index = (): JSX.Element => {
   return (
@@ -24,15 +27,9 @@ const Index = (): JSX.Element => {
             alignItems: "center",
           }}
         >
-          {/* Demo Video goes here */}
-          <img
-            src="/video.png"
-            alt="demo"
-            style={{
-              height: "300px",
-              margin: "2em 0",
-            }}
-          />
+          <div style={{ marginTop: "4em", marginBottom: "2em" }}>
+            <SiteLogo size={4} />
+          </div>
 
           <IntroText>
             Dessert helps you transition from JavaScript to WebAssembly. We
@@ -40,7 +37,7 @@ const Index = (): JSX.Element => {
             and that slow down your application.
           </IntroText>
 
-          <div style={{ textAlign: "center", marginTop: "4em" }}>
+          <div style={{ textAlign: "center", marginTop: "2em" }}>
             <BigOutlineButton to="/modules">Get Started →</BigOutlineButton>
           </div>
         </div>

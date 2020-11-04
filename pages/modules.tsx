@@ -8,6 +8,15 @@ import Input from "../components/Input"
 import RegularLayout from "../displays/RegularLayout"
 import { Module } from "../types/Module"
 
+// This page allows to search for modules
+// When the user hasn't started searching for something, featured and latest
+// modules are shown instead
+// Otherwise the actual search results are listed
+
+// This query is fired when the user searches for something
+// Modules are grabbed 100 by 100 and we have automatic pagination on scroll
+// 100 might looks big the the payload is very small here: its only text
+// The backend code is very light too so nothing wrong
 const SEARCH_QUERY = gql`
   query search($query: String!) {
     search(
@@ -37,6 +46,10 @@ interface FeaturedModule {
   authorName: string
 }
 
+// TODO This was some mock data to quickly validate the idea during an UX
+// seminar but we should actually pull data from the back-end at some point.
+// Fixing the featured modules IDs is fine but the information must be
+// pulled from server in case the author changes something.
 const featuredList: FeaturedModule[] = [
   {
     id: 2,
@@ -76,6 +89,8 @@ const featuredList: FeaturedModule[] = [
   },
 ]
 
+// When the user hasn't searched something yet, we display mutliple sections
+// This component allows to avoid styling duplication
 const SectionTitle = ({
   children,
 }: {
@@ -84,6 +99,7 @@ const SectionTitle = ({
   <div style={{ fontWeight: "bold", margin: "2em 0 1em 0" }}>{children}</div>
 )
 
+// Shows at most three columns of features modules
 const FeaturedModuleComponent = ({
   module,
 }: {
@@ -119,6 +135,8 @@ const FeaturedModuleComponent = ({
   </div>
 )
 
+// Show a popular tag
+// Cling on tag fires a search with that tag
 const TagComponent = ({ children }: { children: string }): JSX.Element => {
   const router = useRouter()
 
@@ -139,6 +157,7 @@ const TagComponent = ({ children }: { children: string }): JSX.Element => {
     </div>
   )
 }
+
 const Modules = (): JSX.Element => {
   const router = useRouter()
   const q = router.query.q?.toString() || ""
@@ -149,7 +168,10 @@ const Modules = (): JSX.Element => {
     }
   )
 
-  useEffect(() => {}, [data])
+  // For the search we actually have a pretty nice feature where the URL
+  // is updated real time as the user inputs text
+  // Said URL can then be shared, the page can be shared...
+  // TODO Add a debounce here
 
   return (
     <>
@@ -159,7 +181,7 @@ const Modules = (): JSX.Element => {
 
       <RegularLayout maxWidth="100%">
         <h2>Search Modules</h2>
-        {/* Add conditional for mobile layout */}
+        {/* Aligning the search bar with the second column of the featured modules */}
         <div style={{ width: "calc(2 * 16em + 1 * 1em + 4 * 0.8em)" }}>
           <Input
             placeholder="Search anything"

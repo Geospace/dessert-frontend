@@ -4,6 +4,8 @@ import InfiniteScroll from "react-infinite-scroll-component"
 import { Module } from "../types/Module"
 import styles from "./ModuleList.module.css"
 
+// A list of modules, with infinite scrolling
+
 interface Props {
   modules: Module[]
 }

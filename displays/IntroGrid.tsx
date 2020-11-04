@@ -3,6 +3,10 @@ import { Col, Container, Row, useScreenClass } from "react-grid-system"
 import ThinTitle from "../components/ThinTitle"
 import styles from "./IntroGrid.module.css"
 
+// Some static content for the home page
+// We could propably extract the layout itself in a component but
+// we currently don't need to reuse it
+
 interface Props {
   title: string
   children: React.ReactNode

@@ -2,6 +2,8 @@ import Link from "next/link"
 
 import style from "./NavbarLink.module.css"
 
+// A link, but for the navigation bar
+
 interface Props {
   children: string
   to: string

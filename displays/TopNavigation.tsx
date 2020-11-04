@@ -9,13 +9,23 @@ import SiteLogo from "../components/SiteLogo"
 import { User } from "../types/User"
 import styles from "./TopNavigation.module.css"
 
+// Our top bar
+// Mostly just some links, and the user's profile if he is connected
+
 const elements = [
   { to: "/modules", text: "Modules" },
-  { to: "https://www.notion.so/Documentation-f6c3ecd3e12d4e4b96e4f242c94ab602", text: "Learn" },
+  {
+    to: "https://www.notion.so/Documentation-f6c3ecd3e12d4e4b96e4f242c94ab602",
+    text: "Learn",
+  },
   { to: "/blog", text: "Blog" },
-  { to: "https://www.notion.so/Who-are-we-1d21260779c64e6da6b439c4076c0309", text: "About" },
+  {
+    to: "https://www.notion.so/Who-are-we-1d21260779c64e6da6b439c4076c0309",
+    text: "About",
+  },
 ]
 
+// Query some information about the connected user
 const ME_QUERY = gql`
   query {
     me {

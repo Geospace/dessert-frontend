@@ -4,6 +4,9 @@ import ThinTitle from "../components/ThinTitle"
 import RegularLayout from "../displays/RegularLayout"
 import SignUpForm from "../displays/SignupForm"
 
+// Simple sign up form
+// See the SignUpForm component for all the logic
+
 const SignUp = (): JSX.Element => (
   <>
     <Head>

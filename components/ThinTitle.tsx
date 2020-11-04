@@ -1,5 +1,7 @@
 import styles from "./ThinTitle.module.css"
 
+// A title component, but thinner
+
 interface Props {
   children: string
   size?: number

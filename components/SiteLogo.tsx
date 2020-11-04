@@ -2,6 +2,8 @@ import Link from "next/link"
 
 import style from "./SiteLogo.module.css"
 
+// A reusable logo component
+
 interface Props {
   size: number
 }

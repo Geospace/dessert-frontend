@@ -4,6 +4,9 @@ import ThinTitle from "../components/ThinTitle"
 import LogInForm from "../displays/LoginForm"
 import RegularLayout from "../displays/RegularLayout"
 
+// A login page, no fuss
+// All the logic is in the LogInForm component
+
 const LogIn = (): JSX.Element => {
   return (
     <>
