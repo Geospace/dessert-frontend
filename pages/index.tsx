@@ -1,6 +1,7 @@
 import Head from "next/head"
 
 import BigOutlineButton from "../components/BigOutlineButton"
+import SiteLogo from "../components/SiteLogo"
 // import SiteLogo from "../components/SiteLogo"
 import IntroGrid from "../displays/IntroGrid"
 import IntroText from "../displays/IntroText"
@@ -25,14 +26,15 @@ const Index = (): JSX.Element => {
           }}
         >
           {/* Demo Video goes here */}
-          <img
-            src="/video.png"
-            alt="demo"
+          <div
             style={{
-              height: "300px",
-              margin: "2em 0",
+              textAlign: "center",
+              paddingTop: "1em",
+              marginBottom: "4em",
             }}
-          />
+          >
+            <SiteLogo size={4} />
+          </div>
 
           <IntroText>
             Dessert helps you transition from JavaScript to WebAssembly. We
