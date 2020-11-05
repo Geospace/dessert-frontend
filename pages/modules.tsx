@@ -1,11 +1,10 @@
 import { gql, useQuery } from "@apollo/client"
-import { ProvidedRequiredArgumentsOnDirectivesRule } from "graphql/validation/rules/ProvidedRequiredArgumentsRule"
+import debounce from "lodash/debounce"
 import { useRouter } from "next/dist/client/router"
 import Head from "next/head"
 import Link from "next/link"
-import { useState } from "react"
-import StateManager from "react-select"
-import Select, { ValueType } from "react-select"
+import { useCallback, useState } from "react"
+import Select from "react-select"
 
 import Input from "../components/Input"
 import RegularLayout from "../displays/RegularLayout"
@@ -174,6 +173,7 @@ const Modules = (): JSX.Element => {
   const q = router.query.q?.toString() || ""
   const t = router.query.t?.toString() || null
   const [selectedOption, setSelectedOption] = useState<SelectOption>(null)
+  const [search, setSearch] = useState(q)
 
   const { loading, error, data } = useQuery<{ search: { result: Module[] } }>(
     SEARCH_QUERY,
@@ -198,6 +198,14 @@ const Modules = (): JSX.Element => {
     }
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const onSearch = useCallback(
+    debounce((s) => {
+      pushRoute(s)
+    }, 300),
+    []
+  )
+
   return (
     <>
       <Head>
@@ -220,9 +228,10 @@ const Modules = (): JSX.Element => {
             <Input
               placeholder="Search anything"
               onChange={(e) => {
-                pushRoute(e.currentTarget.value, t)
+                setSearch(e.currentTarget.value)
+                onSearch(e.currentTarget.value)
               }}
-              value={q}
+              value={search}
             />
           </div>
           <div

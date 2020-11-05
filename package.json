@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@apollo/client": "^3.1.4",
+    "@types/lodash": "^4.14.164",
     "@types/react-select": "^3.0.23",
     "github-markdown-css": "^4.0.0",
     "graphql": "^15.3.0",
+    "lodash": "^4.17.20",
     "mobile-detect": "^1.4.4",
     "next": "^10.0.1",
     "normalize.css": "^8.0.1",
