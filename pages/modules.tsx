@@ -182,10 +182,7 @@ const Modules = (): JSX.Element => {
     }
   )
 
-  // For the search we actually have a pretty nice feature where the URL
-  // is updated real time as the user inputs text
-  // Said URL can then be shared, the page can be shared...
-  // TODO Add a debounce here
+  // When typing in the search bar or selecting a filter
   const pushRoute = (query?: string | null, type?: string | null) => {
     if (!query) {
       router.push("/modules", undefined, {
@@ -198,6 +195,7 @@ const Modules = (): JSX.Element => {
     }
   }
 
+  // useCallback so the debounced function is not recreated at each render
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onSearch = useCallback(
     debounce((s) => {
@@ -206,6 +204,9 @@ const Modules = (): JSX.Element => {
     []
   )
 
+  // For the search we actually have a pretty nice feature where the URL
+  // is updated real time as the user inputs text
+  // Said URL can then be shared, the page can be shared...
   return (
     <>
       <Head>
