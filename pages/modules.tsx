@@ -1,8 +1,11 @@
 import { gql, useQuery } from "@apollo/client"
+import { ProvidedRequiredArgumentsOnDirectivesRule } from "graphql/validation/rules/ProvidedRequiredArgumentsRule"
 import { useRouter } from "next/dist/client/router"
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useState } from "react"
+import StateManager from "react-select"
+import Select, { ValueType } from "react-select"
 
 import Input from "../components/Input"
 import RegularLayout from "../displays/RegularLayout"
@@ -18,9 +21,10 @@ import { Module } from "../types/Module"
 // 100 might looks big the the payload is very small here: its only text
 // The backend code is very light too so nothing wrong
 const SEARCH_QUERY = gql`
-  query search($query: String!) {
+  query search($query: String!, $type: ModuleTypeEnum) {
     search(
       query: $query
+      type: $type
       pagination: { includeCount: false, pageSize: 100, pageNumber: 1 }
     ) {
       result {
@@ -87,6 +91,13 @@ const featuredList: FeaturedModule[] = [
     description: "WASM core for showdown module",
     authorName: "Lucas",
   },
+]
+
+type SelectOption = { value: string; label: string } | null
+const selectOptions = [
+  { value: "", label: "None" },
+  { value: "CORE", label: "Core" },
+  { value: "CONNECTOR", label: "Connector" },
 ]
 
 // When the user hasn't searched something yet, we display mutliple sections
@@ -161,10 +172,13 @@ const TagComponent = ({ children }: { children: string }): JSX.Element => {
 const Modules = (): JSX.Element => {
   const router = useRouter()
   const q = router.query.q?.toString() || ""
+  const t = router.query.t?.toString() || null
+  const [selectedOption, setSelectedOption] = useState<SelectOption>(null)
+
   const { loading, error, data } = useQuery<{ search: { result: Module[] } }>(
     SEARCH_QUERY,
     {
-      variables: { query: q },
+      variables: { query: q, type: t },
     }
   )
 
@@ -172,6 +186,17 @@ const Modules = (): JSX.Element => {
   // is updated real time as the user inputs text
   // Said URL can then be shared, the page can be shared...
   // TODO Add a debounce here
+  const pushRoute = (query?: string | null, type?: string | null) => {
+    if (!query) {
+      router.push("/modules", undefined, {
+        shallow: true,
+      })
+    } else {
+      router.push(`/modules?q=${query}${type ? `&t=${type}` : ""}`, undefined, {
+        shallow: true,
+      })
+    }
+  }
 
   return (
     <>
@@ -181,23 +206,50 @@ const Modules = (): JSX.Element => {
 
       <RegularLayout maxWidth="100%">
         <h2>Search Modules</h2>
-        {/* Aligning the search bar with the second column of the featured modules */}
-        <div style={{ width: "calc(2 * 16em + 1 * 1em + 4 * 0.8em)" }}>
-          <Input
-            placeholder="Search anything"
-            onChange={(e) => {
-              if (e.currentTarget.value.length > 0) {
-                router.push(`/modules?q=${e.currentTarget.value}`, undefined, {
-                  shallow: true,
-                })
-              } else {
-                router.push("/modules", undefined, {
-                  shallow: true,
-                })
-              }
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          {/* Aligning the search bar with the second column of the featured modules */}
+          <div
+            style={{
+              width: "calc(2 * 16em + 1 * 1em + 4 * 0.8em)",
             }}
-            value={q}
-          />
+          >
+            <Input
+              placeholder="Search anything"
+              onChange={(e) => {
+                pushRoute(e.currentTarget.value, t)
+              }}
+              value={q}
+            />
+          </div>
+          <div
+            style={{
+              padding: "0 1em",
+              width: "8em",
+            }}
+          >
+            <Select
+              placeholder="Filter..."
+              onChange={(e) => {
+                setSelectedOption(e as SelectOption)
+                if (e) pushRoute(q, (e as SelectOption)?.value)
+              }}
+              options={selectOptions}
+              value={selectedOption}
+              styles={{
+                option: (provided, state) => ({
+                  ...provided,
+                  backgroundColor: state.isSelected
+                    ? "rgba(199, 21, 133, 0.9)"
+                    : provided.backgroundColor,
+                }),
+              }}
+              instanceId="type-select"
+            />
+          </div>
         </div>
 
         {q === "" && (
@@ -268,7 +320,9 @@ const Modules = (): JSX.Element => {
                   >
                     By {module.author.nickname}{" "}
                     {module.tags.length > 0
-                      ? `| Tags: ${module.tags.map((t) => t.name).join(", ")}`
+                      ? `| Tags: ${module.tags
+                          .map((tag) => tag.name)
+                          .join(", ")}`
                       : "| No tags"}
                   </p>
                 </div>
