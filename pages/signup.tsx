@@ -1,8 +1,8 @@
-import Head from "next/head"
+import Head from 'next/head'
 
-import ThinTitle from "../components/ThinTitle"
-import RegularLayout from "../displays/RegularLayout"
-import SignUpForm from "../displays/SignupForm"
+import ThinTitle from '../components/ThinTitle'
+import RegularLayout from '../displays/RegularLayout'
+import SignUpForm from '../displays/SignupForm'
 
 // Simple sign up form
 // See the SignUpForm component for all the logic
@@ -14,7 +14,7 @@ const SignUp = (): JSX.Element => (
     </Head>
 
     <RegularLayout footer={false}>
-      <div style={{ textAlign: "center", marginTop: "8%" }}>
+      <div style={{ textAlign: 'center', marginTop: '8%' }}>
         <ThinTitle size={1.5}>Sign Up to Dessert</ThinTitle>
       </div>
       <SignUpForm />

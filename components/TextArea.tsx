@@ -1,4 +1,4 @@
-import styles from "./TextArea.module.css"
+import styles from './TextArea.module.css'
 
 // A very global input component
 
@@ -12,17 +12,17 @@ const TextArea = ({ value, onChange, placeholder }: Props): JSX.Element => (
   <textarea
     onChange={onChange}
     className={styles.input}
-    autoCapitalize="off"
-    autoCorrect="off"
+    autoCapitalize='off'
+    autoCorrect='off'
     value={value}
     placeholder={placeholder}
   />
 )
 
 TextArea.defaultProps = {
-  inputType: "text",
-  value: "",
-  placeholder: "",
+  inputType: 'text',
+  value: '',
+  placeholder: ''
 }
 
 export default TextArea

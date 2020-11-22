@@ -1,11 +1,10 @@
-import Link from "next/link"
-import { useState } from "react"
-import { toast } from "react-toastify"
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
-import Input from "../components/Input"
-import PrimaryButton from "../components/PrimaryButton"
-import TextArea from "../components/TextArea"
-import styles from "./ContactForm.module.css"
+import Input from '../components/Input'
+import PrimaryButton from '../components/PrimaryButton'
+import TextArea from '../components/TextArea'
+import styles from './ContactForm.module.css'
 
 // See the login form
 // Nothing more here
@@ -16,10 +15,10 @@ const Label = ({ children }: { children: string }): JSX.Element => (
 )
 
 const LogInForm = (): JSX.Element => {
-  const [email, updateEmail] = useState("")
-  const [name, updateName] = useState("")
-  const [obj, updateObj] = useState("")
-  const [txt, updateTxt] = useState("")
+  const [email, updateEmail] = useState('')
+  const [name, updateName] = useState('')
+  const [obj, updateObj] = useState('')
+  const [txt, updateTxt] = useState('')
 
   return (
     <>
@@ -59,7 +58,7 @@ const LogInForm = (): JSX.Element => {
         <PrimaryButton
           onClick={(): void => {
             console.log(name, email, obj, txt)
-            toast.info("Thank you for your message!")
+            toast.info('Thank you for your message!')
           }}
         >
           Send

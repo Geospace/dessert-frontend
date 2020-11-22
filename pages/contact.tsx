@@ -1,7 +1,7 @@
-import Head from "next/head"
+import Head from 'next/head'
 
-import ContactForm from "../displays/ContactForm"
-import RegularLayout from "../displays/RegularLayout"
+import ContactForm from '../displays/ContactForm'
+import RegularLayout from '../displays/RegularLayout'
 
 // A contact page, no fuss
 
@@ -13,10 +13,10 @@ const Contact = (): JSX.Element => {
       </Head>
 
       <RegularLayout footer={false}>
-        <div style={{ marginTop: "8%", textAlign: "center" }}>
+        <div style={{ marginTop: '8%', textAlign: 'center' }}>
           <h2>Contact</h2>
         </div>
-        <p style={{ textAlign: "center" }}>
+        <p style={{ textAlign: 'center' }}>
           Please, use the form below to contact us. We will respond to you
           shortly.
         </p>

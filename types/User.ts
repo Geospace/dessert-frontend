@@ -1,5 +1,5 @@
-import { Module } from "./Module"
-import { Token } from "./Token"
+import { Module } from './Module'
+import { Token } from './Token'
 
 // An user
 export interface User {

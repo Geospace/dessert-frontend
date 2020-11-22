@@ -1,6 +1,6 @@
-import Head from "next/head"
+import Head from 'next/head'
 
-import RegularLayout from "./RegularLayout"
+import RegularLayout from './RegularLayout'
 
 // Same logic as the Loading component
 

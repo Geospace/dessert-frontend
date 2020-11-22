@@ -1,5 +1,5 @@
-import SiteLogo from "../components/SiteLogo"
-import style from "./Footer.module.css"
+import SiteLogo from '../components/SiteLogo'
+import style from './Footer.module.css'
 
 // The footer of the website, should be present every page
 
@@ -8,16 +8,16 @@ const Footer = (): JSX.Element => (
     <p>
       <SiteLogo size={0.9} />, all rights reserved.
       <br />
-      Favicon made by{" "}
+      Favicon made by{' '}
       <a
-        href="https://www.flaticon.com/free-icon/donut_3125268?term=dessert&page=2&position=78"
-        title="Icongeek26"
+        href='https://www.flaticon.com/free-icon/donut_3125268?term=dessert&page=2&position=78'
+        title='Icongeek26'
       >
         Icongeek26
-      </a>{" "}
-      from{" "}
-      <a href="https://www.flaticon.com/" title="Flaticon">
-        {" "}
+      </a>{' '}
+      from{' '}
+      <a href='https://www.flaticon.com/' title='Flaticon'>
+        {' '}
         www.flaticon.com
       </a>
       .

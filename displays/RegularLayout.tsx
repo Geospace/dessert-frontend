@@ -1,8 +1,8 @@
-import Head from "next/head"
+import Head from 'next/head'
 
-import Footer from "./Footer"
-import style from "./RegularLayout.module.css"
-import TopNavigation from "./TopNavigation"
+import Footer from './Footer'
+import style from './RegularLayout.module.css'
+import TopNavigation from './TopNavigation'
 
 // Most pages are wrapped into the component
 // General margins and styling are handled here
@@ -16,17 +16,17 @@ interface Props {
 const RegularLayout = ({ children, footer, maxWidth }: Props): JSX.Element => (
   <div className={style.layout}>
     <Head>
-      <link rel="shortcut icon" href="favicon.png" />
+      <link rel='shortcut icon' href='favicon.png' />
     </Head>
     <TopNavigation />
     <div style={{ maxWidth }}>{children}</div>
-    {footer && <Footer />}
+    {footer !== undefined && footer && <Footer />}
   </div>
 )
 
 RegularLayout.defaultProps = {
   footer: true,
-  maxWidth: "auto",
+  maxWidth: 'auto'
 }
 
 export default RegularLayout

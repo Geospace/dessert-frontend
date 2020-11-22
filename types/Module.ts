@@ -15,6 +15,6 @@ export interface Module {
   description: string
   author: ModuleAuthor
   isCore: boolean
-  githubLink: string
+  githubLink: string | null
   tags: Tag[]
 }

@@ -1,4 +1,4 @@
-import styles from "./Input.module.css"
+import styles from './Input.module.css'
 
 // A very global input component
 
@@ -13,23 +13,23 @@ const Input = ({
   inputType,
   value,
   onChange,
-  placeholder,
+  placeholder
 }: Props): JSX.Element => (
   <input
     onChange={onChange}
     className={styles.input}
     type={inputType}
-    autoCapitalize="off"
-    autoCorrect="off"
+    autoCapitalize='off'
+    autoCorrect='off'
     value={value}
     placeholder={placeholder}
   />
 )
 
 Input.defaultProps = {
-  inputType: "text",
-  value: "",
-  placeholder: "",
+  inputType: 'text',
+  value: '',
+  placeholder: ''
 }
 
 export default Input

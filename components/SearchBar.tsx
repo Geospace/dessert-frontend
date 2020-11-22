@@ -1,6 +1,6 @@
-import { FormEvent, useState } from "react"
+import { FormEvent, useState } from 'react'
 
-import styles from "./SearchBar.module.css"
+import styles from './SearchBar.module.css'
 
 // A customizable sidebar
 
@@ -10,7 +10,7 @@ interface Props {
 
 const SearchBar = ({ onSearch }: Props): JSX.Element => {
   const [moduleType, setModuleType] = useState<string | undefined>(undefined)
-  const [query, setQuery] = useState<string>("")
+  const [query, setQuery] = useState<string>('')
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     onSearch(query, moduleType)
@@ -24,7 +24,7 @@ const SearchBar = ({ onSearch }: Props): JSX.Element => {
 
   const handleSelect = (e: FormEvent<HTMLSelectElement>): void => {
     const { value } = e.currentTarget
-    const newModuleType = value === "NONE" ? undefined : value
+    const newModuleType = value === 'NONE' ? undefined : value
     setModuleType(newModuleType)
   }
 
@@ -33,20 +33,20 @@ const SearchBar = ({ onSearch }: Props): JSX.Element => {
       <input
         className={styles.input}
         onChange={handleInput}
-        id="search"
-        type="search"
-        placeholder="Search anything..."
+        id='search'
+        type='search'
+        placeholder='Search anything...'
       />
       <select
         className={styles.select}
         value={moduleType}
         onChange={handleSelect}
       >
-        <option value="NONE">Module Type</option>
-        <option value="CONNECTOR">Connector</option>
-        <option value="CORE">Core</option>
+        <option value='NONE'>Module Type</option>
+        <option value='CONNECTOR'>Connector</option>
+        <option value='CORE'>Core</option>
       </select>
-      <button className={styles.submit} type="submit">
+      <button className={styles.submit} type='submit'>
         Search
       </button>
     </form>

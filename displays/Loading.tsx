@@ -1,6 +1,6 @@
-import Head from "next/head"
+import Head from 'next/head'
 
-import RegularLayout from "./RegularLayout"
+import RegularLayout from './RegularLayout'
 
 // The loading animation
 // Does not do much for now but still we wanted to extract this in a component

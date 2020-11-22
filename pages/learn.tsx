@@ -1,6 +1,6 @@
-import Head from "next/head"
+import Head from 'next/head'
 
-import RegularLayout from "../displays/RegularLayout"
+import RegularLayout from '../displays/RegularLayout'
 
 // The learning center references a few tutorials that explains how to use
 // Dessert

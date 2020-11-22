@@ -1,6 +1,6 @@
-import Link from "next/link"
+import Link from 'next/link'
 
-import styles from "./PrimaryButton.module.css"
+import styles from './PrimaryButton.module.css'
 
 // Our primary button, filled
 
@@ -40,7 +40,7 @@ const PrimaryButton = ({ to, onClick, children }: Props): JSX.Element => {
 
 PrimaryButton.defaultProps = {
   to: undefined,
-  onClick: undefined,
+  onClick: undefined
 }
 
 export default PrimaryButton

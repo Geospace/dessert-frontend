@@ -1,4 +1,4 @@
-import style from "./Theme.module.css"
+import style from './Theme.module.css'
 
 // Proxy component to inject global theming
 

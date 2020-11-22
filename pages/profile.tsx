@@ -1,13 +1,13 @@
-import { gql, useMutation, useQuery } from "@apollo/client"
-import { useRouter } from "next/dist/client/router"
-import Head from "next/head"
-import Link from "next/link"
-import { toast } from "react-toastify"
+import { gql, useMutation, useQuery } from '@apollo/client'
+import { useRouter } from 'next/dist/client/router'
+import Head from 'next/head'
+import Link from 'next/link'
+import { toast } from 'react-toastify'
 
-import PrimaryButton from "../components/PrimaryButton"
-import Loading from "../displays/Loading"
-import RegularLayout from "../displays/RegularLayout"
-import { User } from "../types/User"
+import PrimaryButton from '../components/PrimaryButton'
+import Loading from '../displays/Loading'
+import RegularLayout from '../displays/RegularLayout'
+import { User } from '../types/User'
 
 // The profile page
 // The user must be logged in order to access this
@@ -60,11 +60,11 @@ const Profile = (): JSX.Element => {
   const { loading, error, data } = useQuery<{ me: User }>(ME_QUERY)
   const router = useRouter()
 
-  if (loading) {
+  if (loading || data === undefined) {
     return <Loading />
   }
 
-  if (!data || !data.me || error) {
+  if (error !== undefined) {
     return <p>Something bad happened...</p>
   }
 
@@ -74,7 +74,7 @@ const Profile = (): JSX.Element => {
         <title>{data.me.nickname}&apos;s Profile</title>
       </Head>
 
-      <RegularLayout maxWidth="42em">
+      <RegularLayout maxWidth='42em'>
         <h2>Hello, {data.me.nickname}</h2>
 
         <p>
@@ -95,16 +95,16 @@ const Profile = (): JSX.Element => {
           <ul>
             {data.me.tokens.map((token) => (
               <li key={token.id}>
-                {token.description} |{" "}
+                {token.description} |{' '}
                 <a
-                  href="#"
+                  href='#'
                   onClick={() => {
-                    if (window.confirm("Are you sure?")) {
+                    if (window.confirm('Are you sure?')) {
                       revoke({ variables: { token: token.token } })
-                        .then(() => toast.info("The token was revoked"))
+                        .then(() => toast.info('The token was revoked'))
                         .catch(() =>
                           toast.error(
-                            "An error occured, the token was not deleted"
+                            'An error occured, the token was not deleted'
                           )
                         )
                     }
@@ -116,14 +116,14 @@ const Profile = (): JSX.Element => {
             ))}
           </ul>
         ) : (
-          <p style={{ fontStyle: "italic" }}>You have no tokens...</p>
+          <p style={{ fontStyle: 'italic' }}>You have no tokens...</p>
         )}
 
         <h3>Modules</h3>
 
         <p>
           You uploaded {data.me.modules.result.length} module
-          {data && data.me.modules.result.length > 1 && "s"}. Thank you for your
+          {data.me.modules.result.length > 1 && 's'}. Thank you for your
           contributions! Here are your latest modules...
         </p>
 
@@ -138,7 +138,7 @@ const Profile = (): JSX.Element => {
             ))}
           </ul>
         ) : (
-          <p style={{ fontStyle: "italic" }}>You have no modules...</p>
+          <p style={{ fontStyle: 'italic' }}>You have no modules...</p>
         )}
 
         <h3>Log Out</h3>
@@ -148,17 +148,17 @@ const Profile = (): JSX.Element => {
           to the home page.
         </p>
 
-        <div style={{ marginBottom: "2em" }}>
+        <div style={{ marginBottom: '2em' }}>
           <PrimaryButton
             onClick={() => {
               logout()
-                .then(() => {
-                  toast.success("You have been logged out")
-                  client?.resetStore().then()
-                  router.push("/")
+                .then(async () => {
+                  toast.success('You have been logged out')
+                  await client?.resetStore().then()
+                  await router.push('/')
                 })
                 .catch(() => {
-                  toast.error("An error occured, you were not logged out")
+                  toast.error('An error occured, you were not logged out')
                 })
             }}
           >
@@ -169,8 +169,8 @@ const Profile = (): JSX.Element => {
         <h3>Support</h3>
 
         <p>
-          Do you need help? Please, open an issue{" "}
-          <a href="https://github.com/dessert-wasm/">on GitHub</a>.
+          Do you need help? Please, open an issue{' '}
+          <a href='https://github.com/dessert-wasm/'>on GitHub</a>.
         </p>
       </RegularLayout>
     </>
