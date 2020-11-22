@@ -1,5 +1,8 @@
 # Dessert Frontend
 
-We are currently working on a complete rewrite of the front end.
+This repository hosts the front-end of Dessert.
 
-The documentation is to come.
+Dessert is a platform that makes it easy to integrate and develop for
+WebAssembly.
+
+Live version: [https://dessert.dev/](https://dessert.dev/)

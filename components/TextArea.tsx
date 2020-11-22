@@ -1,24 +1,17 @@
-import styles from './Input.module.css'
+import styles from './TextArea.module.css'
 
 // A very global input component
 
 interface Props {
-  inputType?: string
   value?: string
   placeholder?: string
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void
+  onChange: (e: React.FormEvent<HTMLTextAreaElement>) => void
 }
 
-const Input = ({
-  inputType,
-  value,
-  onChange,
-  placeholder
-}: Props): JSX.Element => (
-  <input
+const TextArea = ({ value, onChange, placeholder }: Props): JSX.Element => (
+  <textarea
     onChange={onChange}
     className={styles.input}
-    type={inputType}
     autoCapitalize='off'
     autoCorrect='off'
     value={value}
@@ -26,10 +19,10 @@ const Input = ({
   />
 )
 
-Input.defaultProps = {
+TextArea.defaultProps = {
   inputType: 'text',
   value: '',
   placeholder: ''
 }
 
-export default Input
+export default TextArea

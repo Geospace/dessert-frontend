@@ -1,11 +1,13 @@
-import Head from "next/head"
+import Head from 'next/head'
 
-import BigOutlineButton from "../components/BigOutlineButton"
-import SiteLogo from "../components/SiteLogo"
-// import SiteLogo from "../components/SiteLogo"
-import IntroGrid from "../displays/IntroGrid"
-import IntroText from "../displays/IntroText"
-import RegularLayout from "../displays/RegularLayout"
+import BigOutlineButton from '../components/BigOutlineButton'
+import SiteLogo from '../components/SiteLogo'
+import IntroGrid from '../displays/IntroGrid'
+import IntroText from '../displays/IntroText'
+import RegularLayout from '../displays/RegularLayout'
+
+// The index is what the user sees when he reaches /
+// Nothing special here, just some static text with catchy information
 
 const Index = (): JSX.Element => {
   return (
@@ -17,19 +19,19 @@ const Index = (): JSX.Element => {
       <RegularLayout>
         <div
           style={{
-            maxWidth: "32em",
-            margin: "0 auto",
-            marginBottom: "4em",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            maxWidth: '32em',
+            margin: '0 auto',
+            marginBottom: '4em',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
           }}
         >
           <div
             style={{
-              textAlign: "center",
-              paddingTop: "1em",
-              marginBottom: "2em",
+              textAlign: 'center',
+              paddingTop: '1em',
+              marginBottom: '2em'
             }}
           >
             <SiteLogo size={4} />
@@ -43,20 +45,20 @@ const Index = (): JSX.Element => {
 
           <div
             style={{
-              textAlign: "center",
-              marginTop: "2em",
-              marginBottom: "4em",
+              textAlign: 'center',
+              marginTop: '2em',
+              marginBottom: '4em'
             }}
           >
-            <BigOutlineButton to="/modules">Get Started →</BigOutlineButton>
+            <BigOutlineButton to='/modules'>Get Started →</BigOutlineButton>
           </div>
         </div>
 
         <div
           style={{
-            maxWidth: "32em",
-            margin: "0 auto",
-            marginBottom: "2em",
+            maxWidth: '32em',
+            margin: '0 auto',
+            marginBottom: '2em'
           }}
         >
           <IntroGrid />
@@ -64,9 +66,25 @@ const Index = (): JSX.Element => {
 
         <div
           style={{
-            maxWidth: "28em",
-            margin: "0 auto",
-            marginBottom: "4em",
+            marginBottom: '4em',
+            maxWidth: '560px',
+            height: '315px',
+            margin: '0 auto'
+          }}
+        >
+          <iframe
+            width='100%'
+            height='100%'
+            src='https://www.youtube.com/embed/mPdi8EeAkj8'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          />
+        </div>
+
+        <div
+          style={{
+            maxWidth: '28em',
+            margin: '0 auto',
+            marginBottom: '5em'
           }}
         >
           <IntroText>

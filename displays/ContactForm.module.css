@@ -1,15 +1,13 @@
 .box {
   padding: 1.3em 1.2em;
-  width: 280px;
+  width: 500px;
+  max-width: 80%;
   margin: 0 auto;
   margin-top: 2em;
-
-  border: 1px solid #dedede;
-  border-radius: var(--radius-box);
-  box-sizing: border-box;
 }
 
-.box input {
+.box input,
+.box textarea {
   margin-top: 0.3em;
 }
 

@@ -1,6 +1,8 @@
-import Link from "next/link"
+import Link from 'next/link'
 
-import styles from "./BigOutlineButton.module.css"
+import styles from './BigOutlineButton.module.css'
+
+// A big button that is empty on the inside
 
 interface Props {
   to: string

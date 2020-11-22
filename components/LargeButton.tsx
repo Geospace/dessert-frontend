@@ -1,4 +1,6 @@
-import styles from "./LargeButton.module.css"
+import styles from './LargeButton.module.css'
+
+// A button, but larger
 
 interface Props {
   children: string

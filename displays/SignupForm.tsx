@@ -1,12 +1,14 @@
-import { gql, useMutation } from "@apollo/client"
-import { useRouter } from "next/dist/client/router"
-import Link from "next/link"
-import { useState } from "react"
-import { toast } from "react-toastify"
+import { gql, useMutation } from '@apollo/client'
+import { useRouter } from 'next/dist/client/router'
+import Link from 'next/link'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
-import Input from "../components/Input"
-import LargeButton from "../components/LargeButton"
-import styles from "./LoginForm.module.css"
+import Input from '../components/Input'
+import LargeButton from '../components/LargeButton'
+import styles from './LoginForm.module.css'
+
+// See LoginForm, this is the exact same thing
 
 const Label = ({ children }: { children: string }): JSX.Element => (
   <label className={styles.label}>{children}</label>
@@ -21,9 +23,9 @@ const REGISTER_MUTATION = gql`
 `
 
 const SignUpForm = (): JSX.Element => {
-  const [email, updateEmail] = useState("")
-  const [password, updatePassword] = useState("")
-  const [nickname, updateNickname] = useState("")
+  const [email, updateEmail] = useState('')
+  const [password, updatePassword] = useState('')
+  const [nickname, updateNickname] = useState('')
   const [register] = useMutation(REGISTER_MUTATION)
   const router = useRouter()
 
@@ -43,7 +45,7 @@ const SignUpForm = (): JSX.Element => {
           <Input
             value={password}
             onChange={(e): void => updatePassword(e.currentTarget.value)}
-            inputType="password"
+            inputType='password'
           />
         </div>
 
@@ -59,22 +61,22 @@ const SignUpForm = (): JSX.Element => {
           onClick={(e): void => {
             e.preventDefault()
             register({ variables: { email, password, nickname } })
-              .then(() => {
-                toast.success("Account successfully created")
-                router.push("/login")
+              .then(async () => {
+                toast.success('Account successfully created')
+                return await router.push('/login')
               })
               .catch(() => {
-                toast.error("Could not create your account")
-                updatePassword("")
+                toast.error('Could not create your account')
+                updatePassword('')
               })
           }}
         >
           Sign Up
         </LargeButton>
       </div>
-      <p style={{ textAlign: "center", marginTop: "2em" }}>
-        Do you already have an account?{" "}
-        <Link href="/login">
+      <p style={{ textAlign: 'center', marginTop: '2em' }}>
+        Do you already have an account?{' '}
+        <Link href='/login'>
           <a>Click here to log in!</a>
         </Link>
       </p>

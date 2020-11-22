@@ -1,8 +1,11 @@
-import Head from "next/head"
+import Head from 'next/head'
 
-import ThinTitle from "../components/ThinTitle"
-import LogInForm from "../displays/LoginForm"
-import RegularLayout from "../displays/RegularLayout"
+import ThinTitle from '../components/ThinTitle'
+import LogInForm from '../displays/LoginForm'
+import RegularLayout from '../displays/RegularLayout'
+
+// A login page, no fuss
+// All the logic is in the LogInForm component
 
 const LogIn = (): JSX.Element => {
   return (
@@ -12,7 +15,7 @@ const LogIn = (): JSX.Element => {
       </Head>
 
       <RegularLayout footer={false}>
-        <div style={{ textAlign: "center", marginTop: "8%" }}>
+        <div style={{ textAlign: 'center', marginTop: '8%' }}>
           <ThinTitle size={1.5}>Log In to Dessert</ThinTitle>
         </div>
         <LogInForm />

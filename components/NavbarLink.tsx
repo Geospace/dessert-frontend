@@ -1,6 +1,8 @@
-import Link from "next/link"
+import Link from 'next/link'
 
-import style from "./NavbarLink.module.css"
+import style from './NavbarLink.module.css'
+
+// A link, but for the navigation bar
 
 interface Props {
   children: string
@@ -11,13 +13,13 @@ interface Props {
 const NavbarLink = ({ children, to, active }: Props): JSX.Element => (
   <li className={style.link}>
     <Link href={to}>
-      <a style={{ color: active ? "#c71585" : undefined }}>{children}</a>
+      <a style={{ color: active !== false ? '#c71585' : '' }}>{children}</a>
     </Link>
   </li>
 )
 
 NavbarLink.defaultProps = {
-  active: false,
+  active: false
 }
 
 export default NavbarLink

@@ -1,4 +1,6 @@
-import styles from "./IntroText.module.css"
+import styles from './IntroText.module.css'
+
+// A proxy component, just for styling
 
 interface Props {
   children: string

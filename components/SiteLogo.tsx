@@ -1,6 +1,8 @@
-import Link from "next/link"
+import Link from 'next/link'
 
-import style from "./SiteLogo.module.css"
+import style from './SiteLogo.module.css'
+
+// A reusable logo component
 
 interface Props {
   size: number
@@ -8,7 +10,7 @@ interface Props {
 
 const SiteLogo = ({ size }: Props): JSX.Element => (
   <span className={style.logo} style={{ fontSize: `${size}em` }}>
-    <Link href="/">
+    <Link href='/'>
       <a>Dessert</a>
     </Link>
   </span>
