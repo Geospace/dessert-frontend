@@ -131,7 +131,7 @@ const Profile = (): JSX.Element => {
           <ul>
             {data.me.modules.result.map((module) => (
               <li key={module.id}>
-                <Link href={`/module/${module.id}`}>
+                <Link href={`/modules/${module.id}`}>
                   <a>{module.name}</a>
                 </Link>
               </li>

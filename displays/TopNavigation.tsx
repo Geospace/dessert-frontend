@@ -15,12 +15,11 @@ import styles from './TopNavigation.module.css'
 const elements = [
   { to: '/modules', text: 'Modules' },
   {
-    to: 'https://www.notion.so/Documentation-f6c3ecd3e12d4e4b96e4f242c94ab602',
-    text: 'Learn'
+    to: '/docs', text: 'Documentation'
   },
   { to: '/blog', text: 'Blog' },
   {
-    to: 'https://www.notion.so/Who-are-we-1d21260779c64e6da6b439c4076c0309',
+    to: '/docs/who-are-we',
     text: 'About'
   },
   { to: '/contact', text: 'Contact' }
@@ -94,7 +93,7 @@ const TopNavigation = (): JSX.Element => {
 
   const links = elements.map((e, k) => (
     <span style={{ marginLeft: k !== 0 ? '1.5em' : 'none' }} key={e.text}>
-      <NavbarLink active={router.pathname === e.to} to={e.to}>
+      <NavbarLink active={router.pathname.includes(e.to)} to={e.to}>
         {e.text}
       </NavbarLink>
     </span>

@@ -1,0 +1,48 @@
+---
+title: 🚀 Quickstart guide
+date: 26 Nov. 2020
+cover: /docs/quickstart-guide.jpeg
+---
+
+## Install a module
+
+First, install the [Command Line Tool](https://github.com/dessert-wasm/cli#installation),
+it will greatly simplify the process.
+
+### Choose a module to install
+
+It is necessary to define what library used in your app can be replaced by a
+Dessert module. To do so, to methods exist :
+
+1. Manually browse the [Dessert website](http://dessert.dev)
+2. Use the `recommend` command from the Dessert CLI
+
+The `recommend` command will run through your project's dependencies and
+check for each of them if an existing Dessert equivalent exists, then display
+a list of modules likely to interest you. You can then install these modules
+if you want, or pick the one you are interested in.
+
+### Replace a dependency
+
+It's recommended to first check a module's documentation before installing it
+because some details on installation or usage may vary.
+
+Then, install the Dessert module :
+
+```bash
+npm install <module_name>
+```
+
+Next, you have to replace in your code the occurrences where you use the
+replaced library (the one you are replacing for a Dessert module).
+
+Eventually, remove it. For example:
+
+```bash
+npm remove <old_library>
+```
+
+If everything went well, your app just gained performance !
+
+Some demonstration are available
+[here](https://github.com/dessert-wasm/dessert-demo) or [over here](https://github.com/dessert-wasm/dessert-filesize-demo).

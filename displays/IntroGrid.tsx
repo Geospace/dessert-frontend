@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Col, Container, Row, useScreenClass } from 'react-grid-system'
 
 import ThinTitle from '../components/ThinTitle'
@@ -44,15 +45,19 @@ const IntroGrid = (): JSX.Element => {
         <ConfiguredCol title='Easy'>
           Dessert modules are drop-in replacements for their JavaScript
           counterparts.{' '}
-          <a href='https://www.notion.so/Quickstart-guide-a1b815606d6746889abcd8b4e96bfe92'>
-            Take our tour.
-          </a>
+          <Link href='/docs/quickstart-guide'>
+            <a>
+              Take our tour.
+            </a>
+          </Link>
         </ConfiguredCol>
         <ConfiguredCol title='Modern'>
           Dessert and WebAssembly brings near-native performance in the browser.{' '}
-          <a href='https://www.notion.so/Why-Dessert-db8345650009409fa7e5b3b94c30378e'>
-            Learn more here.
-          </a>
+          <Link href='/docs/why-dessert'>
+            <a>
+              Learn more here.
+            </a>
+          </Link>
         </ConfiguredCol>
       </Row>
 
@@ -60,9 +65,11 @@ const IntroGrid = (): JSX.Element => {
         <ConfiguredCol title='Open Source'>
           Dessert is a free, open source, and community-driven. All
           contributions are welcome!{' '}
-          <a href='https://www.notion.so/Contributing-Guide-3cd42febbf66421084693774b47f39f0'>
-            Read the guide.
-          </a>
+          <Link href='/docs/contributing-guide'>
+            <a>
+              Read the guide.
+            </a>
+          </Link>
         </ConfiguredCol>
         <ConfiguredCol title='Incremental'>
           Incrementally introduce WebAssembly into your codebase, with the tools{' '}

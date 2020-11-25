@@ -128,7 +128,7 @@ const FeaturedModuleComponent = ({
   >
     <h3 style={{ margin: '0.3em 0' }}>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Link href={`/module/${module.id}`}>
+        <Link href={`/modules/${module.id}`}>
           <a>{module.name}</a>
         </Link>
       </div>
@@ -313,7 +313,7 @@ const Modules = (): JSX.Element => {
                     }}
                   >
                     <h3 style={{ margin: '0.3em 0' }}>
-                      <Link href={`/module/${module.id}`}>
+                      <Link href={`/modules/${module.id}`}>
                         <a>{module.name}</a>
                       </Link>
                     </h3>
