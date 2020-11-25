@@ -24,6 +24,17 @@ export default function PostPage ({ source, frontMatter }: any): JSX.Element {
   return (
     <RegularLayout maxWidth='42em'>
       <h1>{frontMatter.title}</h1>
+      <p style={{ marginTop: '-20px', color: '#444' }}>Written by {frontMatter.author} • Published {frontMatter.date} • {frontMatter.category}</p>
+      <div style={{
+        background: `url("${frontMatter.cover as string}") no-repeat center center`,
+        backgroundSize: 'cover',
+        height: 200,
+        maxWidth: 800,
+        borderRadius: 5,
+        border: '1px solid rgb(226, 232, 240)',
+        margin: '2em 0'
+      }}
+      />
       <div>{content}</div>
     </RegularLayout>
   )
@@ -57,8 +68,6 @@ export async function getStaticPaths (): Promise<any> {
   const paths = postFilePaths
     .map((path) => path.replace(/\.mdx?$/, ''))
     .map((slug) => ({ params: { slug } }))
-
-  console.log(paths)
 
   return {
     paths,

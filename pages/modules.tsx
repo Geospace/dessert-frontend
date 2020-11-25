@@ -184,8 +184,6 @@ const Modules = (): JSX.Element => {
 
   // When typing in the search bar or selecting a filter
   const pushRoute = async (query?: string, type?: string): Promise<void> => {
-    console.log(query)
-
     if (query === undefined) {
       await router.push('/modules', undefined, {
         shallow: true
@@ -225,7 +223,6 @@ const Modules = (): JSX.Element => {
             <Input
               placeholder='Search anything'
               onChange={(e) => {
-                console.log(e.currentTarget.value)
                 setSearch(e.currentTarget.value)
                 onSearch(e.currentTarget.value)
               }}
