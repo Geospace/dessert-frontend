@@ -46,3 +46,13 @@ If everything went well, your app just gained performance !
 
 Some demonstration are available
 [here](https://github.com/dessert-wasm/dessert-demo) or [over here](https://github.com/dessert-wasm/dessert-filesize-demo).
+
+### Got an error?
+
+⚠️  Dessert (and more generally WASM modules) use asynchronous `import`s.
+Here is what importing a module looks like:
+
+```
+let myModule;
+myModule = await import('some-dessert-module')
+```
