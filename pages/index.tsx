@@ -1,15 +1,31 @@
 import Head from 'next/head'
+import { loadIntercom } from 'intercom-next'
 
 import BigOutlineButton from '../components/BigOutlineButton'
 import SiteLogo from '../components/SiteLogo'
 import IntroGrid from '../displays/IntroGrid'
 import IntroText from '../displays/IntroText'
 import RegularLayout from '../displays/RegularLayout'
+import { useEffect } from 'react'
 
 // The index is what the user sees when he reaches /
 // Nothing special here, just some static text with catchy information
 
 const Index = (): JSX.Element => {
+  useEffect(() => {
+    const p = loadIntercom({
+      appId: 'bt07r1xs',
+      email: 'lucas.santoni@epitech.eu',
+      name: 'Dessert',
+      ssr: false,
+      initWindow: true,
+      delay: 0
+    })
+
+    if (p !== undefined) {
+      p.catch(console.error)
+    }
+  })
   return (
     <>
       <Head>

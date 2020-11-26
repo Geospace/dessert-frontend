@@ -122,7 +122,7 @@ const FeaturedModuleComponent = ({
       borderRadius: '5px',
       padding: '0.8em',
       boxShadow:
-        '0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 rgba(100, 100, 100, 0.2)',
+          '0 0.5px 0 0 #ffffff inset, 0 1px 2px 0 rgba(100, 100, 100, 0.2)',
       width: '16em'
     }}
   >
@@ -205,6 +205,17 @@ const Modules = (): JSX.Element => {
     <>
       <Head>
         <title>Search Modules</title>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `console.log('Loading SmartLook...');
+          window.smartlook||(function(d) {
+          var o=smartlook=function(){o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+          var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+          c.charset='utf-8';c.src='https://rec.smartlook.com/recorder.js';h.appendChild(c);
+          })(document);
+          smartlook('init', 'f9c7861135853351c0462607d45b0d726fcfa2b4');`
+          }}
+        />
       </Head>
 
       <RegularLayout maxWidth='100%'>
@@ -307,9 +318,9 @@ const Modules = (): JSX.Element => {
                     style={{
                       margin: '1em 0',
                       borderBottom:
-                      i === data.search.result.length - 1
-                        ? 'none'
-                        : '1px solid rgba(100, 100, 100, 0.08)'
+                        i === data.search.result.length - 1
+                          ? 'none'
+                          : '1px solid rgba(100, 100, 100, 0.08)'
                     }}
                   >
                     <h3 style={{ margin: '0.3em 0' }}>
