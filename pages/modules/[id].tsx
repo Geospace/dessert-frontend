@@ -53,7 +53,7 @@ const Tag = ({
 const Module = (): JSX.Element => {
   const router = useRouter()
   const [stars, updateStars] = useState(0)
-  const [license, updateLicense] = useState('Uknown Liscense')
+  const [license, updateLicense] = useState('Unknown License')
   const [readme, updateReadme] = useState('*No README found...*')
   const { loading, error, data } = useQuery<{ module: ModuleType }>(
     MODULE_QUERY,
